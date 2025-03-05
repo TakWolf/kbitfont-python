@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kbits PUBLIC "-//Kreative//DTD BitsNPicasBitmap 1.0//EN" "http://www.kreativekorp.com/dtd/kbitx.dtd">
+<kbits>
+<prop id="emAscent" value="10"/>
+<prop id="emDescent" value="2"/>
+<prop id="lineAscent" value="10"/>
+<prop id="lineDescent" value="2"/>
+<prop id="lineGap" value="1"/>
+<prop id="xHeight" value="5"/>
+<prop id="capHeight" value="7"/>
+<name id="0" value="Copyright (c) TakWolf"/>
+<name id="1" value="Demo"/>
+<name id="2" value="Regular"/>
+<g u="32" x="0" y="10" w="6" d="BARBgjJCAkICQoIZQQ"/>
+<g u="33" x="0" y="10" w="6" d="BARBgjJCAkICQoIZQQ"/>
+<g n="A" x="0" y="10" w="6" d="BARBgjJCAkICQoIZQQ"/>
+<g n="B" x="0" y="10" w="6" d="BARBgjJCAkICQoIZQQ"/>
+<k lu="50" ru="50" o="4"/>
+<k lu="50" rn="50" o="2"/>
+<k ln="50" ru="50" o="1"/>
+<k ln="50" rn="50" o="3"/>
+</kbits>
