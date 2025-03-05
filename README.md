@@ -41,18 +41,18 @@ pip install kbitfont
 
 ### Font Struct
 
-- [Font.java](https://github.com/kreativekorp/bitsnpicas/blob/master/main/java/BitsNPicas/src/com/kreative/bitsnpicas/Font.java)
-- [BitmapFont.java](https://github.com/kreativekorp/bitsnpicas/blob/master/main/java/BitsNPicas/src/com/kreative/bitsnpicas/BitmapFont.java)
+- [Font.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/Font.java)
+- [BitmapFont.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/BitmapFont.java)
 
 ### Kbits
 
-- [KbitsBitmapFontImporter.java](https://github.com/kreativekorp/bitsnpicas/blob/master/main/java/BitsNPicas/src/com/kreative/bitsnpicas/importer/KbitsBitmapFontImporter.java)
-- [KbitsBitmapFontExporter.java](https://github.com/kreativekorp/bitsnpicas/blob/master/main/java/BitsNPicas/src/com/kreative/bitsnpicas/exporter/KbitsBitmapFontExporter.java)
+- [KbitsBitmapFontImporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/importer/KbitsBitmapFontImporter.java)
+- [KbitsBitmapFontExporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/exporter/KbitsBitmapFontExporter.java)
 
 ### Kbitx
 
-- [KbitxBitmapFontImporter.java](https://github.com/kreativekorp/bitsnpicas/blob/master/main/java/BitsNPicas/src/com/kreative/bitsnpicas/importer/KbitxBitmapFontImporter.java)
-- [KbitxBitmapFontExporter.java](https://github.com/kreativekorp/bitsnpicas/blob/master/main/java/BitsNPicas/src/com/kreative/bitsnpicas/exporter/KbitxBitmapFontExporter.java)
+- [KbitxBitmapFontImporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/importer/KbitxBitmapFontImporter.java)
+- [KbitxBitmapFontExporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/exporter/KbitxBitmapFontExporter.java)
 
 ## License
 
