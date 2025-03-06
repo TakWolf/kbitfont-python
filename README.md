@@ -195,6 +195,10 @@ if __name__ == '__main__':
 - [KbitxBitmapFontImporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/importer/KbitxBitmapFontImporter.java)
 - [KbitxBitmapFontExporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/exporter/KbitxBitmapFontExporter.java)
 
+## Dependencies
+
+- [lxml](https://github.com/lxml/lxml)
+
 ## License
 
 Under the [MIT license](LICENSE).

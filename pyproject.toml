@@ -22,6 +22,10 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+dependencies = [
+    "lxml>=5.3.1",
+]
+
 [project.urls]
 homepage = "https://github.com/TakWolf/kbitfont"
 source = "https://github.com/TakWolf/kbitfont"
