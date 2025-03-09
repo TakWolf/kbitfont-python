@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "kbitfont"
-version = "0.0.0"
+version = "0.0.1"
 description = "A library for parsing Bits'N'Picas native save format files ('.kbits' and '.kbitx')"
 readme = "README.md"
 license = { text = "MIT License" }
