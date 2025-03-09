@@ -1,4 +1,4 @@
-from typing import Final
+from typing import Final, BinaryIO
 
 from lxml.etree import Element
 
@@ -30,6 +30,11 @@ PROP_LINE_GAP: Final = 'lineGap'
 PROP_X_HEIGHT: Final = 'xHeight'
 PROP_CAP_HEIGHT: Final = 'capHeight'
 
+XML_HEADER: Final = b'<?xml version="1.0" encoding="UTF-8"?>\n'
+XML_DOCTYPE: Final = f'<!DOCTYPE {TAG_ROOT} PUBLIC "-//Kreative//DTD BitsNPicasBitmap 1.0//EN" "http://www.kreativekorp.com/dtd/kbitx.dtd">\n'.encode()
+XML_ROOT_START: Final = f'<{TAG_ROOT}>\n'.encode()
+XML_ROOT_CLOSE: Final = f'</{TAG_ROOT}>\n'.encode()
+
 
 def get_attr_str(node: Element, key: str, default: str = None) -> str | None:
     value = node.attrib.get(key, None)
@@ -45,3 +50,19 @@ def get_attr_int(node: Element, key: str, default: int = None) -> int | None:
     if value is not None:
         return int(value)
     return default
+
+
+def write_xml_tag_line(stream: BinaryIO, tag: str, attrs: list[tuple[str, int | str]]):
+    stream.write(b'<')
+    stream.write(tag.encode())
+    for key, value in attrs:
+        if not isinstance(value, str):
+            value = str(value)
+        value = value.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&#34;').replace("'", '&#39;')
+
+        stream.write(b' ')
+        stream.write(key.encode())
+        stream.write(b'="')
+        stream.write(value.encode())
+        stream.write(b'"')
+    stream.write(b'/>\n')

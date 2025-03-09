@@ -223,46 +223,98 @@ class KbitFont:
             self.dump_kbits(file)
 
     def dump_kbitx(self, stream: BinaryIO):
-        stream.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
-        stream.write(b'<!DOCTYPE kbits PUBLIC "-//Kreative//DTD BitsNPicasBitmap 1.0//EN" "http://www.kreativekorp.com/dtd/kbitx.dtd">\n')
-        stream.write(f'<{kbitx.TAG_ROOT}>\n'.encode())
+        stream.write(kbitx.XML_HEADER)
+        stream.write(kbitx.XML_DOCTYPE)
+        stream.write(kbitx.XML_ROOT_START)
 
-        stream.write(f'<{kbitx.TAG_PROP} {kbitx.ATTR_ID}="{kbitx.PROP_EM_ASCENT}" {kbitx.ATTR_VALUE}="{self.props.em_ascent}"/>\n'.encode())
-        stream.write(f'<{kbitx.TAG_PROP} {kbitx.ATTR_ID}="{kbitx.PROP_EM_DESCENT}" {kbitx.ATTR_VALUE}="{self.props.em_descent}"/>\n'.encode())
-        stream.write(f'<{kbitx.TAG_PROP} {kbitx.ATTR_ID}="{kbitx.PROP_LINE_ASCENT}" {kbitx.ATTR_VALUE}="{self.props.line_ascent}"/>\n'.encode())
-        stream.write(f'<{kbitx.TAG_PROP} {kbitx.ATTR_ID}="{kbitx.PROP_LINE_DESCENT}" {kbitx.ATTR_VALUE}="{self.props.line_descent}"/>\n'.encode())
-        stream.write(f'<{kbitx.TAG_PROP} {kbitx.ATTR_ID}="{kbitx.PROP_LINE_GAP}" {kbitx.ATTR_VALUE}="{self.props.line_gap}"/>\n'.encode())
-        stream.write(f'<{kbitx.TAG_PROP} {kbitx.ATTR_ID}="{kbitx.PROP_X_HEIGHT}" {kbitx.ATTR_VALUE}="{self.props.x_height}"/>\n'.encode())
-        stream.write(f'<{kbitx.TAG_PROP} {kbitx.ATTR_ID}="{kbitx.PROP_CAP_HEIGHT}" {kbitx.ATTR_VALUE}="{self.props.cap_height}"/>\n'.encode())
+        kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
+            (kbitx.ATTR_ID, kbitx.PROP_EM_ASCENT),
+            (kbitx.ATTR_VALUE, self.props.em_ascent),
+        ])
+        kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
+            (kbitx.ATTR_ID, kbitx.PROP_EM_DESCENT),
+            (kbitx.ATTR_VALUE, self.props.em_descent),
+        ])
+        kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
+            (kbitx.ATTR_ID, kbitx.PROP_LINE_ASCENT),
+            (kbitx.ATTR_VALUE, self.props.line_ascent),
+        ])
+        kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
+            (kbitx.ATTR_ID, kbitx.PROP_LINE_DESCENT),
+            (kbitx.ATTR_VALUE, self.props.line_descent),
+        ])
+        kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
+            (kbitx.ATTR_ID, kbitx.PROP_LINE_GAP),
+            (kbitx.ATTR_VALUE, self.props.line_gap),
+        ])
+        kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
+            (kbitx.ATTR_ID, kbitx.PROP_X_HEIGHT),
+            (kbitx.ATTR_VALUE, self.props.x_height),
+        ])
+        kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
+            (kbitx.ATTR_ID, kbitx.PROP_CAP_HEIGHT),
+            (kbitx.ATTR_VALUE, self.props.cap_height),
+        ])
 
         for name_id, value in sorted(self.names.items()):
-            stream.write(f'<{kbitx.TAG_NAME} {kbitx.ATTR_ID}="{name_id}" {kbitx.ATTR_VALUE}="{value}"/>\n'.encode())
+            kbitx.write_xml_tag_line(stream, kbitx.TAG_NAME, [
+                (kbitx.ATTR_ID, name_id),
+                (kbitx.ATTR_VALUE, value),
+            ])
 
         for code_point, glyph in sorted(self.characters.items()):
             data = BytesIO()
             Stream(data).write_bitmap(glyph.bitmap)
             data = base64.encode_no_padding(data.getvalue()).decode()
-            stream.write(f'<{kbitx.TAG_GLYPH} {kbitx.ATTR_UNICODE}="{code_point}" {kbitx.ATTR_X}="{glyph.x}" {kbitx.ATTR_Y}="{glyph.y}" {kbitx.ATTR_ADVANCE}="{glyph.advance}" {kbitx.ATTR_DATA}="{data}"/>\n'.encode())
+            kbitx.write_xml_tag_line(stream, kbitx.TAG_GLYPH, [
+                (kbitx.ATTR_UNICODE, code_point),
+                (kbitx.ATTR_X, glyph.x),
+                (kbitx.ATTR_Y, glyph.y),
+                (kbitx.ATTR_ADVANCE, glyph.advance),
+                (kbitx.ATTR_DATA, data),
+            ])
 
         for glyph_name, glyph in sorted(self.named_glyphs.items()):
             data = BytesIO()
             Stream(data).write_bitmap(glyph.bitmap)
             data = base64.encode_no_padding(data.getvalue()).decode()
-            stream.write(f'<{kbitx.TAG_GLYPH} {kbitx.ATTR_NAME}="{glyph_name}" {kbitx.ATTR_X}="{glyph.x}" {kbitx.ATTR_Y}="{glyph.y}" {kbitx.ATTR_ADVANCE}="{glyph.advance}" {kbitx.ATTR_DATA}="{data}"/>\n'.encode())
+            kbitx.write_xml_tag_line(stream, kbitx.TAG_GLYPH, [
+                (kbitx.ATTR_NAME, glyph_name),
+                (kbitx.ATTR_X, glyph.x),
+                (kbitx.ATTR_Y, glyph.y),
+                (kbitx.ATTR_ADVANCE, glyph.advance),
+                (kbitx.ATTR_DATA, data),
+            ])
 
         for (left, right), offset in sorted(self.kern_pairs.items(), key=_kern_pairs_key_comparator):
             if isinstance(left, int):
                 if isinstance(right, int):
-                    stream.write(f'<{kbitx.TAG_KERN} {kbitx.ATTR_LEFT_UNICODE}="{left}" {kbitx.ATTR_RIGHT_UNICODE}="{right}" {kbitx.ATTR_OFFSET}="{offset}"/>\n'.encode())
+                    kbitx.write_xml_tag_line(stream, kbitx.TAG_KERN, [
+                        (kbitx.ATTR_LEFT_UNICODE, left),
+                        (kbitx.ATTR_RIGHT_UNICODE, right),
+                        (kbitx.ATTR_OFFSET, offset),
+                    ])
                 elif isinstance(right, str):
-                    stream.write(f'<{kbitx.TAG_KERN} {kbitx.ATTR_LEFT_UNICODE}="{left}" {kbitx.ATTR_RIGHT_NAME}="{right}" {kbitx.ATTR_OFFSET}="{offset}"/>\n'.encode())
+                    kbitx.write_xml_tag_line(stream, kbitx.TAG_KERN, [
+                        (kbitx.ATTR_LEFT_UNICODE, left),
+                        (kbitx.ATTR_RIGHT_NAME, right),
+                        (kbitx.ATTR_OFFSET, offset),
+                    ])
             elif isinstance(left, str):
                 if isinstance(right, int):
-                    stream.write(f'<{kbitx.TAG_KERN} {kbitx.ATTR_LEFT_NAME}="{left}" {kbitx.ATTR_RIGHT_UNICODE}="{right}" {kbitx.ATTR_OFFSET}="{offset}"/>\n'.encode())
+                    kbitx.write_xml_tag_line(stream, kbitx.TAG_KERN, [
+                        (kbitx.ATTR_LEFT_NAME, left),
+                        (kbitx.ATTR_RIGHT_UNICODE, right),
+                        (kbitx.ATTR_OFFSET, offset),
+                    ])
                 elif isinstance(right, str):
-                    stream.write(f'<{kbitx.TAG_KERN} {kbitx.ATTR_LEFT_NAME}="{left}" {kbitx.ATTR_RIGHT_NAME}="{right}" {kbitx.ATTR_OFFSET}="{offset}"/>\n'.encode())
+                    kbitx.write_xml_tag_line(stream, kbitx.TAG_KERN, [
+                        (kbitx.ATTR_LEFT_NAME, left),
+                        (kbitx.ATTR_RIGHT_NAME, right),
+                        (kbitx.ATTR_OFFSET, offset),
+                    ])
 
-        stream.write(f'</{kbitx.TAG_ROOT}>\n'.encode())
+        stream.write(kbitx.XML_ROOT_CLOSE)
 
     def dump_kbitx_to_bytes(self) -> bytes:
         stream = BytesIO()
