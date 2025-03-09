@@ -42,8 +42,10 @@ public class Main {
         font.setCapHeight(7);
 
         font.setName(Font.NAME_FAMILY, "Demo");
-        font.setName(Font.NAME_COPYRIGHT, "Copyright (c) TakWolf");
         font.setName(Font.NAME_STYLE, "Regular");
+        font.setName(Font.NAME_MANUFACTURER, "Made with Bits'n'Picas by Kreative Software");
+        font.setName(Font.NAME_DESIGNER, "&'< \"TakWolf\" >'&");
+        font.setName(Font.NAME_COPYRIGHT, "Copyright (c) TakWolf");
 
         byte[][] bitmap = {
                 {-1, 50, 50, -1},
