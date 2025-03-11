@@ -121,7 +121,7 @@ public class XMLUtility {
 			@Override
 			public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
 				if (publicId.contains(pubName) || systemId.contains(dtdName)) {
-					return new InputSource(resCls.getResourceAsStream(dtdName));
+					return new InputSource(resCls.getResourceAsStream("/" + dtdName));
 				} else {
 					return null;
 				}
