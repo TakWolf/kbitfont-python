@@ -1,3 +1,5 @@
+from typing import Any
+
 
 class KbitGlyph:
     x: int
@@ -16,6 +18,14 @@ class KbitGlyph:
         self.y = y
         self.advance = advance
         self.bitmap = [] if bitmap is None else bitmap
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, KbitGlyph):
+            return False
+        return (self.x == other.x and
+                self.y == other.y and
+                self.advance == other.advance and
+                self.bitmap == other.bitmap)
 
     @property
     def width(self) -> int:

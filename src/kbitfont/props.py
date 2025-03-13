@@ -1,3 +1,5 @@
+from typing import Any
+
 
 class KbitProps:
     em_ascent: int
@@ -25,6 +27,17 @@ class KbitProps:
         self.line_gap = line_gap
         self.x_height = x_height
         self.cap_height = cap_height
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, KbitProps):
+            return False
+        return (self.em_ascent == other.em_ascent and
+                self.em_descent == other.em_descent and
+                self.line_ascent == other.line_ascent and
+                self.line_descent == other.line_descent and
+                self.line_gap == other.line_gap and
+                self.x_height == other.x_height and
+                self.cap_height == other.cap_height)
 
     @property
     def em_height(self) -> int:

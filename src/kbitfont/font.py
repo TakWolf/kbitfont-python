@@ -1,6 +1,6 @@
 from io import BytesIO
 from os import PathLike
-from typing import BinaryIO
+from typing import Any, BinaryIO
 
 from lxml import etree
 
@@ -178,6 +178,15 @@ class KbitFont:
         self.characters = {}
         self.named_glyphs = {}
         self.kern_pairs = {}
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, KbitFont):
+            return False
+        return (self.props == other.props and
+                self.names == other.names and
+                self.characters == other.characters and
+                self.named_glyphs == other.named_glyphs and
+                self.kern_pairs == other.kern_pairs)
 
     def dump_kbits(self, stream: BinaryIO):
         stream = Stream(stream)

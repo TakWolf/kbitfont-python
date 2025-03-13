@@ -67,6 +67,11 @@ class KbitNames(UserDict[int, str]):
 
         super().__setitem__(key, value)
 
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, KbitNames):
+            return False
+        return super().__eq__(other)
+
     @property
     def copyright(self) -> str | None:
         return self.get(_NAME_COPYRIGHT, None)
