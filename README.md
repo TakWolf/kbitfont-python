@@ -13,80 +13,6 @@ pip install kbitfont
 
 ## Usage
 
-### Load Kbits
-
-```python
-import shutil
-
-from examples import assets_dir, build_dir
-from kbitfont import KbitFont
-
-
-def main():
-    outputs_dir = build_dir.joinpath('load_kbits')
-    if outputs_dir.exists():
-        shutil.rmtree(outputs_dir)
-    outputs_dir.mkdir(parents=True)
-
-    font = KbitFont.load_kbits(assets_dir.joinpath('macintosh', 'Athens.kbits'))
-    print(f'name: {font.names.family}')
-    print(f'size: {font.props.em_height}')
-    print(f'ascent: {font.props.line_ascent}')
-    print(f'descent: {font.props.line_descent}')
-    print()
-    for code_point, glyph in sorted(font.characters.items()):
-        print(f'char: {chr(code_point)} ({code_point:04X})')
-        print(f'xy: {(glyph.x, glyph.y)}')
-        print(f'dimensions: {glyph.dimensions}')
-        print(f'advance: {glyph.advance}')
-        for bitmap_row in glyph.bitmap:
-            text = ''.join('  ' if alpha <= 127 else '██' for alpha in bitmap_row)
-            print(f'{text}*')
-        print()
-    font.save_kbits(outputs_dir.joinpath('Athens.kbits'))
-
-
-if __name__ == '__main__':
-    main()
-```
-
-### Load Kbitx
-
-```python
-import shutil
-
-from examples import assets_dir, build_dir
-from kbitfont import KbitFont
-
-
-def main():
-    outputs_dir = build_dir.joinpath('load_kbitx')
-    if outputs_dir.exists():
-        shutil.rmtree(outputs_dir)
-    outputs_dir.mkdir(parents=True)
-
-    font = KbitFont.load_kbitx(assets_dir.joinpath('macintosh', 'Athens.kbitx'))
-    print(f'name: {font.names.family}')
-    print(f'size: {font.props.em_height}')
-    print(f'ascent: {font.props.line_ascent}')
-    print(f'descent: {font.props.line_descent}')
-    print()
-    for code_point, glyph in sorted(font.characters.items()):
-        print(f'char: {chr(code_point)} ({code_point:04X})')
-        print(f'xy: {(glyph.x, glyph.y)}')
-        print(f'dimensions: {glyph.dimensions}')
-        print(f'advance: {glyph.advance}')
-        for bitmap_row in glyph.bitmap:
-            text = ''.join('  ' if alpha <= 127 else '██' for alpha in bitmap_row)
-            print(f'{text}*')
-        print()
-    font.save_kbitx(outputs_dir.joinpath('Athens.kbitx'))
-
-
-if __name__ == '__main__':
-    main()
-```
-
 ### Create
 
 ```python
@@ -122,7 +48,7 @@ def main():
     font.names.designer_url = 'https://takwolf.com'
     font.names.license_url = 'https://openfontlicense.org'
 
-    font.characters[ord('A')] = KbitGlyph(
+    font.characters[65] = KbitGlyph(
         x=0,
         y=14,
         advance=8,
@@ -172,6 +98,80 @@ def main():
 
     font.save_kbits(outputs_dir.joinpath('my-font.kbits'))
     font.save_kbitx(outputs_dir.joinpath('my-font.kbitx'))
+
+
+if __name__ == '__main__':
+    main()
+```
+
+### Load Kbits
+
+```python
+import shutil
+
+from examples import assets_dir, build_dir
+from kbitfont import KbitFont
+
+
+def main():
+    outputs_dir = build_dir.joinpath('load_kbits')
+    if outputs_dir.exists():
+        shutil.rmtree(outputs_dir)
+    outputs_dir.mkdir(parents=True)
+
+    font = KbitFont.load_kbits(assets_dir.joinpath('macintosh', 'Athens.kbits'))
+    print(f'name: {font.names.family}')
+    print(f'size: {font.props.em_height}')
+    print(f'ascent: {font.props.line_ascent}')
+    print(f'descent: {font.props.line_descent}')
+    print()
+    for code_point, glyph in sorted(font.characters.items()):
+        print(f'char: {chr(code_point)} ({code_point:04X})')
+        print(f'xy: {(glyph.x, glyph.y)}')
+        print(f'dimensions: {glyph.dimensions}')
+        print(f'advance: {glyph.advance}')
+        for bitmap_row in glyph.bitmap:
+            text = ''.join('  ' if color <= 127 else '██' for color in bitmap_row)
+            print(f'{text}*')
+        print()
+    font.save_kbits(outputs_dir.joinpath('Athens.kbits'))
+
+
+if __name__ == '__main__':
+    main()
+```
+
+### Load Kbitx
+
+```python
+import shutil
+
+from examples import assets_dir, build_dir
+from kbitfont import KbitFont
+
+
+def main():
+    outputs_dir = build_dir.joinpath('load_kbitx')
+    if outputs_dir.exists():
+        shutil.rmtree(outputs_dir)
+    outputs_dir.mkdir(parents=True)
+
+    font = KbitFont.load_kbitx(assets_dir.joinpath('macintosh', 'Athens.kbitx'))
+    print(f'name: {font.names.family}')
+    print(f'size: {font.props.em_height}')
+    print(f'ascent: {font.props.line_ascent}')
+    print(f'descent: {font.props.line_descent}')
+    print()
+    for code_point, glyph in sorted(font.characters.items()):
+        print(f'char: {chr(code_point)} ({code_point:04X})')
+        print(f'xy: {(glyph.x, glyph.y)}')
+        print(f'dimensions: {glyph.dimensions}')
+        print(f'advance: {glyph.advance}')
+        for bitmap_row in glyph.bitmap:
+            text = ''.join('  ' if color <= 127 else '██' for color in bitmap_row)
+            print(f'{text}*')
+        print()
+    font.save_kbitx(outputs_dir.joinpath('Athens.kbitx'))
 
 
 if __name__ == '__main__':

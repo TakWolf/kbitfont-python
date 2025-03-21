@@ -22,7 +22,7 @@ def main():
         print(f'dimensions: {glyph.dimensions}')
         print(f'advance: {glyph.advance}')
         for bitmap_row in glyph.bitmap:
-            text = ''.join('  ' if alpha <= 127 else '██' for alpha in bitmap_row)
+            text = ''.join('  ' if color <= 127 else '██' for color in bitmap_row)
             print(f'{text}*')
         print()
     font.save_kbitx(outputs_dir.joinpath('Athens.kbitx'))

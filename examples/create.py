@@ -30,7 +30,7 @@ def main():
     font.names.designer_url = 'https://takwolf.com'
     font.names.license_url = 'https://openfontlicense.org'
 
-    font.characters[ord('A')] = KbitGlyph(
+    font.characters[65] = KbitGlyph(
         x=0,
         y=14,
         advance=8,
