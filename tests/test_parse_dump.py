@@ -10,6 +10,6 @@ def test_demo_kbits(assets_dir: Path):
 
 
 def test_demo_kbitx(assets_dir: Path):
-    data = assets_dir.joinpath('demo', 'demo.kbitx').read_bytes().replace(b'\r', b'')
+    data = assets_dir.joinpath('demo', 'demo.kbitx').read_bytes()
     font = KbitFont.parse_kbitx(data)
-    assert font.dump_kbitx_to_bytes() == data
+    assert font.dump_kbitx_to_bytes() == data.replace(b'\r', b'')
