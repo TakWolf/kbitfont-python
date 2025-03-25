@@ -27,9 +27,9 @@ dependencies = [
 ]
 
 [project.urls]
-homepage = "https://github.com/TakWolf/kbitfont"
-source = "https://github.com/TakWolf/kbitfont"
-issues = "https://github.com/TakWolf/kbitfont/issues"
+homepage = "https://github.com/TakWolf/kbitfont-python"
+source = "https://github.com/TakWolf/kbitfont-python"
+issues = "https://github.com/TakWolf/kbitfont-python/issues"
 
 [tool.pytest.ini_options]
 pythonpath = "src"

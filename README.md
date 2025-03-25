@@ -1,4 +1,4 @@
-# KbitFont
+# KbitFont.Python
 
 [![Python](https://img.shields.io/badge/python-3.10-brightgreen)](https://www.python.org)
 [![PyPI](https://img.shields.io/pypi/v/kbitfont)](https://pypi.org/project/kbitfont/)
@@ -44,7 +44,7 @@ def main():
     font.names.description = 'A pixel font'
     font.names.copyright = 'Copyright (c) TakWolf'
     font.names.license_description = 'This Font Software is licensed under the SIL Open Font License, Version 1.1'
-    font.names.vendor_url = 'https://github.com/TakWolf/kbitfont'
+    font.names.vendor_url = 'https://github.com/TakWolf/kbitfont-python'
     font.names.designer_url = 'https://takwolf.com'
     font.names.license_url = 'https://openfontlicense.org'
 
