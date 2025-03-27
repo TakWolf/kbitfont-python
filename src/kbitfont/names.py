@@ -55,12 +55,12 @@ class KbitNames(UserDict[int, str]):
         super().__init__()
 
     def __setitem__(self, key: Any, value: Any):
-        if key not in _NAMES:
-            raise KeyError('unknown key')
-
         if value is None:
             self.pop(key, None)
             return
+
+        if key not in _NAMES:
+            raise KeyError('unknown key')
 
         if not isinstance(value, str):
             raise ValueError(f"expected type 'str', got '{type(value).__name__}' instead")
