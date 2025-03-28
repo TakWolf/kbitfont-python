@@ -182,18 +182,18 @@ if __name__ == '__main__':
 
 ### Font Struct
 
-- [Font.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/Font.java)
-- [BitmapFont.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/BitmapFont.java)
+- [Font.java](https://github.com/TakWolf/kbitfont-spec/blob/master/bitsnpicas/src/main/java/com/kreative/bitsnpicas/Font.java)
+- [BitmapFont.java](https://github.com/TakWolf/kbitfont-spec/blob/master/bitsnpicas/src/main/java/com/kreative/bitsnpicas/BitmapFont.java)
 
 ### Kbits
 
-- [KbitsBitmapFontImporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/importer/KbitsBitmapFontImporter.java)
-- [KbitsBitmapFontExporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/exporter/KbitsBitmapFontExporter.java)
+- [KbitsBitmapFontImporter.java](https://github.com/TakWolf/kbitfont-spec/blob/master/bitsnpicas/src/main/java/com/kreative/bitsnpicas/importer/KbitsBitmapFontImporter.java)
+- [KbitsBitmapFontExporter.java](https://github.com/TakWolf/kbitfont-spec/blob/master/bitsnpicas/src/main/java/com/kreative/bitsnpicas/exporter/KbitsBitmapFontExporter.java)
 
 ### Kbitx
 
-- [KbitxBitmapFontImporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/importer/KbitxBitmapFontImporter.java)
-- [KbitxBitmapFontExporter.java](bitsnpicas-spec/bitsnpicas/src/main/java/com/kreative/bitsnpicas/exporter/KbitxBitmapFontExporter.java)
+- [KbitxBitmapFontImporter.java](https://github.com/TakWolf/kbitfont-spec/blob/master/bitsnpicas/src/main/java/com/kreative/bitsnpicas/importer/KbitxBitmapFontImporter.java)
+- [KbitxBitmapFontExporter.java](https://github.com/TakWolf/kbitfont-spec/blob/master/bitsnpicas/src/main/java/com/kreative/bitsnpicas/exporter/KbitxBitmapFontExporter.java)
 
 ## Dependencies
 
