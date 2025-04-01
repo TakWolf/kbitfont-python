@@ -16,7 +16,7 @@ def test_demo_kbitx(assets_dir: Path, tmp_path: Path):
     save_path = tmp_path.joinpath('demo.kbitx')
     font = KbitFont.load_kbitx(load_path)
     font.save_kbitx(save_path)
-    assert load_path.read_bytes().replace(b'\r', b'') == save_path.read_bytes()
+    assert load_path.read_bytes().replace(b'\r\n', b'\n') == save_path.read_bytes()
 
 
 def test_athens_kbits(assets_dir: Path, tmp_path: Path):
@@ -32,7 +32,7 @@ def test_athens_kbitx(assets_dir: Path, tmp_path: Path):
     save_path = tmp_path.joinpath('Athens.kbitx')
     font = KbitFont.load_kbitx(load_path)
     font.save_kbitx(save_path)
-    assert load_path.read_bytes().replace(b'\r', b'') == save_path.read_bytes()
+    assert load_path.read_bytes().replace(b'\r\n', b'\n') == save_path.read_bytes()
 
 
 def test_geneva_12_kbits(assets_dir: Path, tmp_path: Path):
@@ -48,7 +48,7 @@ def test_geneva_12_kbitx(assets_dir: Path, tmp_path: Path):
     save_path = tmp_path.joinpath('Geneva-12.kbitx')
     font = KbitFont.load_kbitx(load_path)
     font.save_kbitx(save_path)
-    assert load_path.read_bytes().replace(b'\r', b'') == save_path.read_bytes()
+    assert load_path.read_bytes().replace(b'\r\n', b'\n') == save_path.read_bytes()
 
 
 def test_new_york_14_kbits(assets_dir: Path, tmp_path: Path):
@@ -64,4 +64,4 @@ def test_new_york_14_kbitx(assets_dir: Path, tmp_path: Path):
     save_path = tmp_path.joinpath('New-York-14.kbitx')
     font = KbitFont.load_kbitx(load_path)
     font.save_kbitx(save_path)
-    assert load_path.read_bytes().replace(b'\r', b'') == save_path.read_bytes()
+    assert load_path.read_bytes().replace(b'\r\n', b'\n') == save_path.read_bytes()
