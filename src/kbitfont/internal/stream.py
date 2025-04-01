@@ -2,16 +2,16 @@ from typing import BinaryIO
 
 
 class Stream:
-    buffer: BinaryIO
+    source: BinaryIO
 
-    def __init__(self, buffer: BinaryIO):
-        self.buffer = buffer
+    def __init__(self, source: BinaryIO):
+        self.source = source
 
     def read(self, size: int) -> bytes:
-        data = self.buffer.read(size)
-        if len(data) < size:
+        values = self.source.read(size)
+        if len(values) < size:
             raise EOFError()
-        return data
+        return values
 
     def read_int(self, size: int) -> int:
         return int.from_bytes(self.read(size), 'big', signed=True)
@@ -84,35 +84,35 @@ class Stream:
             bitmap.append(bitmap_row)
         return bitmap
 
-    def write(self, data: bytes) -> int:
-        return self.buffer.write(data)
+    def write(self, values: bytes) -> int:
+        return self.source.write(values)
 
-    def write_int(self, data: int, size: int) -> int:
-        return self.write(data.to_bytes(size, 'big', signed=True))
+    def write_int(self, value: int, size: int) -> int:
+        return self.write(value.to_bytes(size, 'big', signed=True))
 
-    def write_int8(self, data: int) -> int:
-        return self.write_int(data, 1)
+    def write_int8(self, value: int) -> int:
+        return self.write_int(value, 1)
 
-    def write_int16(self, data: int) -> int:
-        return self.write_int(data, 2)
+    def write_int16(self, value: int) -> int:
+        return self.write_int(value, 2)
 
-    def write_int32(self, data: int) -> int:
-        return self.write_int(data, 4)
+    def write_int32(self, value: int) -> int:
+        return self.write_int(value, 4)
 
-    def write_uint(self, data: int, size: int) -> int:
-        return self.write(data.to_bytes(size, 'big', signed=False))
+    def write_uint(self, value: int, size: int) -> int:
+        return self.write(value.to_bytes(size, 'big', signed=False))
 
-    def write_uint8(self, data: int) -> int:
-        return self.write_uint(data, 1)
+    def write_uint8(self, value: int) -> int:
+        return self.write_uint(value, 1)
 
-    def write_uint16(self, data: int) -> int:
-        return self.write_uint(data, 2)
+    def write_uint16(self, value: int) -> int:
+        return self.write_uint(value, 2)
 
-    def write_uint32(self, data: int) -> int:
-        return self.write_uint(data, 4)
+    def write_uint32(self, value: int) -> int:
+        return self.write_uint(value, 4)
 
-    def write_utf(self, text: str) -> int:
-        data = text.encode()
+    def write_utf(self, value: str) -> int:
+        data = value.encode()
         return self.write_uint16(len(data)) + self.write(data)
 
     def write_uleb128(self, value: int) -> int:
@@ -211,7 +211,7 @@ class Stream:
         return size
 
     def seek(self, offset: int):
-        self.buffer.seek(offset)
+        self.source.seek(offset)
 
     def tell(self) -> int:
-        return self.buffer.tell()
+        return self.source.tell()
