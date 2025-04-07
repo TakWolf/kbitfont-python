@@ -172,12 +172,19 @@ class KbitFont:
     named_glyphs: dict[str, KbitGlyph]
     kern_pairs: dict[tuple[int | str, int | str], int]
 
-    def __init__(self):
-        self.props = KbitProps()
-        self.names = KbitNames()
-        self.characters = {}
-        self.named_glyphs = {}
-        self.kern_pairs = {}
+    def __init__(
+            self,
+            props: KbitProps | None = None,
+            names: KbitNames | None = None,
+            characters: dict[int, KbitGlyph] | None = None,
+            named_glyphs: dict[str, KbitGlyph] | None = None,
+            kern_pairs: dict[tuple[int | str, int | str], int] | None = None,
+    ):
+        self.props = KbitProps() if props is None else props
+        self.names = KbitNames() if names is None else names
+        self.characters = {} if characters is None else characters
+        self.named_glyphs = {} if named_glyphs is None else named_glyphs
+        self.kern_pairs = {} if kern_pairs is None else kern_pairs
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitFont):
