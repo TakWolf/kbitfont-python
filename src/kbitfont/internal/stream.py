@@ -76,10 +76,7 @@ class Stream:
                     elif color_type == 0xC0:
                         repeat_color = None
                 repeat_count -= 1
-                if repeat_color is None:
-                    color = self.read_uint8()
-                else:
-                    color = repeat_color
+                color = self.read_uint8() if repeat_color is None else repeat_color
                 bitmap_row.append(color)
             bitmap.append(bitmap_row)
         return bitmap
