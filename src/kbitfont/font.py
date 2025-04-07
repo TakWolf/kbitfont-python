@@ -58,7 +58,7 @@ class KbitFont:
             if block_type == kbits.BLOCK_TYPE_NAME:
                 if stream.read_uint32() != kbits.SPEC_VERSION:
                     raise KbitsError('bad spec version')
-                name_id = stream.read_uint32()
+                name_id = stream.read_int32()
                 value = stream.read_utf()
                 font.names[name_id] = value
             elif block_type == kbits.BLOCK_TYPE_CHAR:
@@ -211,7 +211,7 @@ class KbitFont:
         for name_id, value in sorted(self.names.items()):
             stream.write(kbits.BLOCK_TYPE_NAME)
             stream.write_uint32(kbits.SPEC_VERSION)
-            stream.write_uint32(name_id)
+            stream.write_int32(name_id)
             stream.write_utf(value)
 
         for code_point, glyph in sorted(self.characters.items()):
