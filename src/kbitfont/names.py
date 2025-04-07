@@ -24,49 +24,8 @@ _NAME_POSTSCRIPT_CID = 20
 _NAME_WWS_FAMILY = 21
 _NAME_WWS_STYLE = 22
 
-_NAMES = {
-    _NAME_COPYRIGHT,
-    _NAME_FAMILY,
-    _NAME_STYLE,
-    _NAME_UNIQUE_ID,
-    _NAME_FAMILY_AND_STYLE,
-    _NAME_VERSION,
-    _NAME_POSTSCRIPT,
-    _NAME_TRADEMARK,
-    _NAME_MANUFACTURER,
-    _NAME_DESIGNER,
-    _NAME_DESCRIPTION,
-    _NAME_VENDOR_URL,
-    _NAME_DESIGNER_URL,
-    _NAME_LICENSE_DESCRIPTION,
-    _NAME_LICENSE_URL,
-    _NAME_WINDOWS_FAMILY,
-    _NAME_WINDOWS_STYLE,
-    _NAME_MACOS_FAMILY_AND_STYLE,
-    _NAME_SAMPLE_TEXT,
-    _NAME_POSTSCRIPT_CID,
-    _NAME_WWS_FAMILY,
-    _NAME_WWS_STYLE,
-}
-
 
 class KbitNames(UserDict[int, str]):
-    def __init__(self):
-        super().__init__()
-
-    def __setitem__(self, key: Any, value: Any):
-        if value is None:
-            self.pop(key, None)
-            return
-
-        if key not in _NAMES:
-            raise KeyError('unknown key')
-
-        if not isinstance(value, str):
-            raise ValueError(f"expected type 'str', got '{type(value).__name__}' instead")
-
-        super().__setitem__(key, value)
-
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitNames):
             return False
