@@ -151,26 +151,26 @@ class Stream:
                     size += self.write_uint8(color)
         if repeat_count > 0:
             if repeat_color == 0x00:
-                base = 0x00
+                basic = 0x00
             elif repeat_color == 0xFF:
-                base = 0x40
+                basic = 0x40
             else:
-                base = 0x80
+                basic = 0x80
             pat = repeat_color != 0x00 and repeat_color != 0xFF
             while repeat_count >= 992:
-                size += self.write_uint8(base | 0x3F)
+                size += self.write_uint8(basic | 0x3F)
                 if pat:
                     size += self.write_uint8(repeat_color)
                 repeat_count -= 992
             if repeat_count >= 32:
                 m = repeat_count >> 5
-                size += self.write_uint8(base | 0x20 | m)
+                size += self.write_uint8(basic | 0x20 | m)
                 m <<= 5
                 if pat:
                     size += self.write_uint8(repeat_color)
                 repeat_count -= m
             if repeat_count > 0:
-                size += self.write_uint8(base | repeat_count)
+                size += self.write_uint8(basic | repeat_count)
                 if pat:
                     size += self.write_uint8(repeat_color)
         return size
