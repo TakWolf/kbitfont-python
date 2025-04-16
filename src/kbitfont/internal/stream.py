@@ -13,29 +13,23 @@ class Stream:
             raise EOFError()
         return values
 
-    def read_int(self, size: int) -> int:
-        return int.from_bytes(self.read(size), 'big', signed=True)
-
     def read_int8(self) -> int:
-        return self.read_int(1)
+        return int.from_bytes(self.read(1), 'big', signed=True)
 
     def read_int16(self) -> int:
-        return self.read_int(2)
+        return int.from_bytes(self.read(2), 'big', signed=True)
 
     def read_int32(self) -> int:
-        return self.read_int(4)
-
-    def read_uint(self, size: int) -> int:
-        return int.from_bytes(self.read(size), 'big', signed=False)
+        return int.from_bytes(self.read(4), 'big', signed=True)
 
     def read_uint8(self) -> int:
-        return self.read_uint(1)
+        return int.from_bytes(self.read(1), 'big', signed=False)
 
     def read_uint16(self) -> int:
-        return self.read_uint(2)
+        return int.from_bytes(self.read(2), 'big', signed=False)
 
     def read_uint32(self) -> int:
-        return self.read_uint(4)
+        return int.from_bytes(self.read(4), 'big', signed=False)
 
     def read_utf(self) -> str:
         size = self.read_uint16()
@@ -84,29 +78,23 @@ class Stream:
     def write(self, values: bytes) -> int:
         return self.source.write(values)
 
-    def write_int(self, value: int, size: int) -> int:
-        return self.write(value.to_bytes(size, 'big', signed=True))
-
     def write_int8(self, value: int) -> int:
-        return self.write_int(value, 1)
+        return self.write(value.to_bytes(1, 'big', signed=True))
 
     def write_int16(self, value: int) -> int:
-        return self.write_int(value, 2)
+        return self.write(value.to_bytes(2, 'big', signed=True))
 
     def write_int32(self, value: int) -> int:
-        return self.write_int(value, 4)
-
-    def write_uint(self, value: int, size: int) -> int:
-        return self.write(value.to_bytes(size, 'big', signed=False))
+        return self.write(value.to_bytes(4, 'big', signed=True))
 
     def write_uint8(self, value: int) -> int:
-        return self.write_uint(value, 1)
+        return self.write(value.to_bytes(1, 'big', signed=False))
 
     def write_uint16(self, value: int) -> int:
-        return self.write_uint(value, 2)
+        return self.write(value.to_bytes(2, 'big', signed=False))
 
     def write_uint32(self, value: int) -> int:
-        return self.write_uint(value, 4)
+        return self.write(value.to_bytes(4, 'big', signed=False))
 
     def write_utf(self, value: str) -> int:
         data = value.encode()
