@@ -1,10 +1,15 @@
+from io import BytesIO
 from typing import BinaryIO
 
 
 class Stream:
     source: BinaryIO
 
-    def __init__(self, source: BinaryIO):
+    def __init__(self, source: bytes | BinaryIO | None = None):
+        if source is None:
+            source = BytesIO()
+        elif isinstance(source, bytes):
+            source = BytesIO(source)
         self.source = source
 
     def read(self, size: int) -> bytes:

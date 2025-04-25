@@ -133,7 +133,7 @@ class KbitFont:
                 advance = kbitx.get_attr_int(node, kbitx.ATTR_ADVANCE, 0)
                 data = kbitx.get_attr_str(node, kbitx.ATTR_DATA)
                 if data is not None:
-                    bitmap = Stream(BytesIO(base64.decode_no_padding(data.encode()))).read_bitmap()
+                    bitmap = Stream(base64.decode_no_padding(data.encode())).read_bitmap()
                 else:
                     bitmap = None
                 glyph = KbitGlyph(x, y, advance, bitmap)
