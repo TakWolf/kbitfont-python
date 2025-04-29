@@ -2,7 +2,7 @@ import random
 
 import pytest
 
-from kbitfont.internal.stream import Stream
+from kbitfont.utils.stream import Stream
 
 
 def test_byte():

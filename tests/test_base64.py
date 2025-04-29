@@ -1,4 +1,4 @@
-from kbitfont.internal import base64
+from kbitfont.utils import base64
 
 
 def test_base64():

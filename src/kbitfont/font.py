@@ -6,10 +6,10 @@ from lxml import etree
 
 from kbitfont.error import KbitsError, KbitxError
 from kbitfont.glyph import KbitGlyph
-from kbitfont.internal import kbits, kbitx, base64
-from kbitfont.internal.stream import Stream
 from kbitfont.names import KbitNames
 from kbitfont.props import KbitProps
+from kbitfont.utils import kbits, kbitx, base64
+from kbitfont.utils.stream import Stream
 
 
 def _kern_pairs_key_comparator(item: tuple[tuple[int | str, int | str], int]) -> tuple[int, int | None, str | None, int, int | None, str | None]:
