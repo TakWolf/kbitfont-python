@@ -1,135 +1,116 @@
-import random
-
 import pytest
 
 from kbitfont.utils.stream import Stream
 
 
-def test_byte():
+def test_bytes():
     stream = Stream()
-    size = stream.write(b'Hello World')
-    assert stream.tell() == size
+    assert stream.write(b'Hello World') == 11
+    assert stream.tell() == 11
     stream.seek(0)
     assert stream.read(11) == b'Hello World'
-    assert stream.tell() == size
+    assert stream.tell() == 11
 
 
 def test_eof():
     stream = Stream()
+    stream.write(b'ABC')
     with pytest.raises(EOFError):
-        stream.read(1)
-
-
-def test_int8():
-    values = [random.randint(-0x80, 0x7F) for _ in range(20)]
-
-    stream = Stream()
-    size = 0
-    for value in values:
-        size += stream.write_int8(value)
-    assert stream.tell() == size
+        stream.read(4)
     stream.seek(0)
-    for value in values:
-        assert stream.read_int8() == value
-    assert stream.tell() == size
+    assert stream.read(4, ignore_eof=True) == b'ABC'
 
 
 def test_uint8():
-    values = [random.randint(0, 0xFF) for _ in range(20)]
-
     stream = Stream()
-    size = 0
-    for value in values:
-        size += stream.write_uint8(value)
-    assert stream.tell() == size
+    assert stream.write_uint8(0x00) == 1
+    assert stream.write_uint8(0xFF) == 1
+    assert stream.tell() == 2
     stream.seek(0)
-    for value in values:
-        assert stream.read_uint8() == value
-    assert stream.tell() == size
+    assert stream.read_uint8() == 0x00
+    assert stream.read_uint8() == 0xFF
+    assert stream.tell() == 2
 
 
-def test_int16():
-    values = [random.randint(-0x80_00, 0x7F_FF) for _ in range(20)]
-
+def test_int8():
     stream = Stream()
-    size = 0
-    for value in values:
-        size += stream.write_int16(value)
-    assert stream.tell() == size
+    assert stream.write_int8(-0x80) == 1
+    assert stream.write_int8(0x7F) == 1
+    assert stream.tell() == 2
     stream.seek(0)
-    for value in values:
-        assert stream.read_int16() == value
-    assert stream.tell() == size
+    assert stream.read_int8() == -0x80
+    assert stream.read_int8() == 0x7F
+    assert stream.tell() == 2
 
 
 def test_uint16():
-    values = [random.randint(0, 0xFF_FF) for _ in range(20)]
-
     stream = Stream()
-    size = 0
-    for value in values:
-        size += stream.write_uint16(value)
-    assert stream.tell() == size
+    assert stream.write_uint16(0x0000) == 2
+    assert stream.write_uint16(0xFFFF) == 2
+    assert stream.tell() == 4
     stream.seek(0)
-    for value in values:
-        assert stream.read_uint16() == value
-    assert stream.tell() == size
+    assert stream.read_uint16() == 0x0000
+    assert stream.read_uint16() == 0xFFFF
+    assert stream.tell() == 4
 
 
-def test_int32():
-    values = [random.randint(-0x80_00_00_00, 0x7F_FF_FF_FF) for _ in range(20)]
-
+def test_int16():
     stream = Stream()
-    size = 0
-    for value in values:
-        size += stream.write_int32(value)
-    assert stream.tell() == size
+    assert stream.write_int16(-0x8000) == 2
+    assert stream.write_int16(0x7FFF) == 2
+    assert stream.tell() == 4
     stream.seek(0)
-    for value in values:
-        assert stream.read_int32() == value
-    assert stream.tell() == size
+    assert stream.read_int16() == -0x8000
+    assert stream.read_int16() == 0x7FFF
+    assert stream.tell() == 4
 
 
 def test_uint32():
-    values = [random.randint(0, 0xFF_FF_FF_FF) for _ in range(20)]
-
     stream = Stream()
-    size = 0
-    for value in values:
-        size += stream.write_uint32(value)
-    assert stream.tell() == size
+    assert stream.write_uint32(0x00000000) == 4
+    assert stream.write_uint32(0xFFFFFFFF) == 4
+    assert stream.tell() == 8
     stream.seek(0)
-    for value in values:
-        assert stream.read_uint32() == value
-    assert stream.tell() == size
+    assert stream.read_uint32() == 0x00000000
+    assert stream.read_uint32() == 0xFFFFFFFF
+    assert stream.tell() == 8
+
+
+def test_int32():
+    stream = Stream()
+    assert stream.write_int32(-0x80000000) == 4
+    assert stream.write_int32(0x7FFFFFFF) == 4
+    assert stream.tell() == 8
+    stream.seek(0)
+    assert stream.read_int32() == -0x80000000
+    assert stream.read_int32() == 0x7FFFFFFF
+    assert stream.tell() == 8
 
 
 def test_utf():
-    values = ['ABC', 'DEF', '12345', '67890']
-
     stream = Stream()
-    size = 0
-    for value in values:
-        size += stream.write_utf(value)
-    assert stream.tell() == size
+    assert stream.write_utf('ABC') == 5
+    assert stream.write_utf('12345') == 7
+    assert stream.tell() == 12
     stream.seek(0)
-    for value in values:
-        assert stream.read_utf() == value
-    assert stream.tell() == size
+    assert stream.read_utf() == 'ABC'
+    assert stream.read_utf() == '12345'
+    assert stream.tell() == 12
 
 
 def test_uleb128():
-    values = [random.randint(0, 0xFFFF) for _ in range(20)]
-
     stream = Stream()
-    size = 0
-    for value in values:
-        size += stream.write_uleb128(value)
-    assert stream.tell() == size
+    assert stream.write_uleb128(65535) == 3
+    assert stream.write_uleb128(624485) == 3
+    assert stream.write(b'\xff\xff\x03') == 3
+    assert stream.write(b'\xe5\x8e\x26') == 3
+    assert stream.tell() == 12
     stream.seek(0)
-    for value in values:
-        assert stream.read_uleb128() == value
-    assert stream.tell() == size
+    assert stream.read(3) == b'\xff\xff\x03'
+    assert stream.read(3) == b'\xe5\x8e\x26'
+    assert stream.read_uleb128() == 65535
+    assert stream.read_uleb128() == 624485
+    assert stream.tell() == 12
 
 
 def test_bitmap_1():
