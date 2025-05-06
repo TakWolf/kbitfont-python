@@ -35,8 +35,8 @@ def _kern_pairs_key_comparator(item: tuple[tuple[int | str, int | str], int]) ->
 
 class KbitFont:
     @staticmethod
-    def parse_kbits(stream: bytes | BinaryIO) -> 'KbitFont':
-        if isinstance(stream, bytes):
+    def parse_kbits(stream: bytes | bytearray | BinaryIO) -> 'KbitFont':
+        if isinstance(stream, (bytes, bytearray)):
             stream = BytesIO(stream)
         stream = Stream(stream)
 
@@ -88,8 +88,8 @@ class KbitFont:
             return KbitFont.parse_kbits(file)
 
     @staticmethod
-    def parse_kbitx(stream: bytes | BinaryIO) -> 'KbitFont':
-        if isinstance(stream, bytes):
+    def parse_kbitx(stream: bytes | bytearray | BinaryIO) -> 'KbitFont':
+        if isinstance(stream, (bytes, bytearray)):
             stream = BytesIO(stream)
 
         tree = etree.parse(stream)
