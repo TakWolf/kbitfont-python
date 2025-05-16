@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from io import BytesIO
 from os import PathLike
 from typing import Any, BinaryIO
@@ -35,7 +37,7 @@ def _kern_pairs_key_comparator(item: tuple[tuple[int | str, int | str], int]) ->
 
 class KbitFont:
     @staticmethod
-    def parse_kbits(stream: bytes | bytearray | BinaryIO) -> 'KbitFont':
+    def parse_kbits(stream: bytes | bytearray | BinaryIO) -> KbitFont:
         if isinstance(stream, (bytes, bytearray)):
             stream = BytesIO(stream)
         stream = Stream(stream)
@@ -83,12 +85,12 @@ class KbitFont:
         return font
 
     @staticmethod
-    def load_kbits(file_path: str | PathLike[str]) -> 'KbitFont':
+    def load_kbits(file_path: str | PathLike[str]) -> KbitFont:
         with open(file_path, 'rb') as file:
             return KbitFont.parse_kbits(file)
 
     @staticmethod
-    def parse_kbitx(stream: bytes | bytearray | BinaryIO) -> 'KbitFont':
+    def parse_kbitx(stream: bytes | bytearray | BinaryIO) -> KbitFont:
         if isinstance(stream, (bytes, bytearray)):
             stream = BytesIO(stream)
 
@@ -162,7 +164,7 @@ class KbitFont:
         return font
 
     @staticmethod
-    def load_kbitx(file_path: str | PathLike[str]) -> 'KbitFont':
+    def load_kbitx(file_path: str | PathLike[str]) -> KbitFont:
         with open(file_path, 'rb') as file:
             return KbitFont.parse_kbitx(file)
 
