@@ -28,7 +28,7 @@ _NAME_ID_WWS_STYLE = 22
 class KbitNames(UserDict[int, str]):
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitNames):
-            return False
+            return NotImplemented
         return super().__eq__(other)
 
     @property

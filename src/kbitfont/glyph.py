@@ -21,7 +21,7 @@ class KbitGlyph:
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitGlyph):
-            return False
+            return NotImplemented
         return (self.x == other.x and
                 self.y == other.y and
                 self.advance == other.advance and

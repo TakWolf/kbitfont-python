@@ -30,7 +30,7 @@ class KbitProps:
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitProps):
-            return False
+            return NotImplemented
         return (self.em_ascent == other.em_ascent and
                 self.em_descent == other.em_descent and
                 self.line_ascent == other.line_ascent and

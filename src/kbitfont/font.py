@@ -190,7 +190,7 @@ class KbitFont:
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitFont):
-            return False
+            return NotImplemented
         return (self.props == other.props and
                 self.names == other.names and
                 self.characters == other.characters and
