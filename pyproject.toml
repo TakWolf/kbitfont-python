@@ -23,7 +23,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "lxml>=5.4.0",
+    "lxml>=6.0.0",
 ]
 
 [project.urls]
