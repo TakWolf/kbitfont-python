@@ -1,6 +1,6 @@
 [project]
 name = "kbitfont"
-version = "0.0.4"
+version = "0.0.5"
 description = "A library for parsing Bits'N'Picas native save format files ('.kbits' and '.kbitx')"
 readme = "README.md"
 license = "MIT"
