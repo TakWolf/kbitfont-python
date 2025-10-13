@@ -1,3 +1,7 @@
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"
+
 [project]
 name = "kbitfont"
 version = "0.0.5"
@@ -32,6 +36,7 @@ dev = [
     "pytest>=8.4.2",
 ]
 
-[build-system]
-requires = ["uv_build"]
-build-backend = "uv_build"
+[project.urls]
+Homepage = "https://github.com/TakWolf/kbitfont-python"
+Source = "https://github.com/TakWolf/kbitfont-python"
+Issues = "https://github.com/TakWolf/kbitfont-python/issues"
