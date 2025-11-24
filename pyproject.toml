@@ -24,12 +24,12 @@ classifiers = [
 ]
 
 dependencies = [
-    "lxml>=6.0.2",
+    "lxml>=6.1.0",
 ]
 
 [dependency-groups]
 dev = [
-    "pytest>=8.4.2",
+    "pytest>=9.0.3",
 ]
 
 [project.urls]
