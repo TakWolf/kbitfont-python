@@ -38,8 +38,6 @@ def _kern_pairs_key_comparator(item: tuple[tuple[int | str, int | str], int]) ->
 class KbitFont:
     @staticmethod
     def parse_kbits(stream: bytes | bytearray | BinaryIO) -> KbitFont:
-        if isinstance(stream, (bytes, bytearray)):
-            stream = BytesIO(stream)
         stream = Stream(stream)
 
         if stream.read(8) != kbits.MAGIC_NUMBER:
