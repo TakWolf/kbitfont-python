@@ -53,11 +53,11 @@ class Stream:
         raise ValueError('uleb128 too long')
 
     def read_bitmap(self) -> list[list[int]]:
-        bitmap = []
         height = self.read_uleb128()
         width = self.read_uleb128()
         repeat_count = 0
         repeat_color = None
+        bitmap = []
         for _ in range(height):
             bitmap_row = []
             for _ in range(width):
@@ -115,8 +115,8 @@ class Stream:
         return size
 
     def _write_bitmap_runs(self, no_repeat_colors: bytearray, repeat_count: int, repeat_color: int) -> int:
-        no_repeat_colors = memoryview(no_repeat_colors)
         size = 0
+        no_repeat_colors = memoryview(no_repeat_colors)
         if len(no_repeat_colors) > 0:
             n = len(no_repeat_colors)
             offset = 0
