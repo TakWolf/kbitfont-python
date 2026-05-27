@@ -180,9 +180,8 @@ class Stream:
         repeat_count = 0
         repeat_color = None
         for bitmap_row in bitmap:
-            if len(bitmap_row) < width:
-                bitmap_row = bitmap_row + [0x00] * (width - len(bitmap_row))
-            for color in bitmap_row:
+            for x in range(width):
+                color = bitmap_row[x] if x < len(bitmap_row) else 0x00
                 if repeat_count <= 0:
                     repeat_count = 1
                     repeat_color = color
