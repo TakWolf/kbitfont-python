@@ -44,13 +44,13 @@ class Stream:
     def read_uleb128(self) -> int:
         value = 0
         shift = 0
-        while True:
+        for _ in range(5):
             data = self.read_uint8()
             value |= (data & 0x7F) << shift
             if (data & 0x80) == 0:
-                break
+                return value
             shift += 7
-        return value
+        raise ValueError('uleb128 too long')
 
     def read_bitmap(self) -> list[list[int]]:
         bitmap = []
