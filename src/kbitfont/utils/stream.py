@@ -81,7 +81,7 @@ class Stream:
             bitmap.append(bitmap_row)
         return bitmap
 
-    def write(self, values: bytes) -> int:
+    def write(self, values: bytes | memoryview) -> int:
         return self.source.write(values)
 
     def write_uint8(self, value: int) -> int:
@@ -115,6 +115,7 @@ class Stream:
         return size
 
     def _write_bitmap_runs(self, no_repeat_colors: bytearray, repeat_count: int, repeat_color: int) -> int:
+        no_repeat_colors = memoryview(no_repeat_colors)
         size = 0
         if len(no_repeat_colors) > 0:
             n = len(no_repeat_colors)
