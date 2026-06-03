@@ -14,13 +14,13 @@ class Stream:
         self.source = source
 
     def read(self, size: int, ignore_eof: bool = False) -> bytes:
-        values = self.source.read(size)
-        if len(values) < size and not ignore_eof:
+        data = self.source.read(size)
+        if len(data) < size and not ignore_eof:
             raise EOFError()
-        return values
+        return data
 
     def read_uint8(self) -> int:
-        return int.from_bytes(self.read(1), 'big', signed=False)
+        return self.read(1)[0]
 
     def read_int8(self) -> int:
         return int.from_bytes(self.read(1), 'big', signed=True)
@@ -81,8 +81,8 @@ class Stream:
             bitmap.append(bitmap_row)
         return bitmap
 
-    def write(self, values: bytes | memoryview) -> int:
-        return self.source.write(values)
+    def write(self, data: bytes | memoryview) -> int:
+        return self.source.write(data)
 
     def write_uint8(self, value: int) -> int:
         return self.write(value.to_bytes(1, 'big', signed=False))
