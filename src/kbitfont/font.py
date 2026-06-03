@@ -78,7 +78,7 @@ class KbitFont:
             elif block_type == kbits.BLOCK_TYPE_FIN:
                 break
             else:
-                raise KbitsError(f'bad block type: {repr(block_type)}')
+                raise KbitsError(f'bad block type: {block_type!r}')
 
         return font
 
@@ -94,7 +94,7 @@ class KbitFont:
 
         tree = etree.parse(stream)
         if tree.docinfo.root_name != kbitx.TAG_ROOT:
-            raise KbitxError(f'unknown root: {repr(tree.docinfo.root_name)}')
+            raise KbitxError(f'unknown root: {tree.docinfo.root_name!r}')
         root = tree.getroot()
 
         font = KbitFont()
