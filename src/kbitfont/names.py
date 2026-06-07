@@ -26,6 +26,9 @@ _NAME_ID_WWS_STYLE = 22
 
 
 class KbitNames(UserDict[int, str]):
+    def __init__(self, names: dict[int, str] | None = None):
+        super().__init__(names)
+
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitNames):
             return NotImplemented
