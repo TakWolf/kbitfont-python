@@ -19,7 +19,7 @@ class KbitGlyph:
         self.x = x
         self.y = y
         self.advance = advance
-        self.bitmap = [] if bitmap is None else bitmap
+        self.bitmap = bitmap if bitmap is not None else []
 
     def __copy__(self) -> KbitGlyph:
         return self.copy()

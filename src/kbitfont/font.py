@@ -180,11 +180,11 @@ class KbitFont:
             named_glyphs: dict[str, KbitGlyph] | None = None,
             kern_pairs: dict[tuple[int | str, int | str], int] | None = None,
     ):
-        self.props = KbitProps() if props is None else props
-        self.names = KbitNames() if names is None else names
-        self.characters = {} if characters is None else characters
-        self.named_glyphs = {} if named_glyphs is None else named_glyphs
-        self.kern_pairs = {} if kern_pairs is None else kern_pairs
+        self.props = props if props is not None else KbitProps()
+        self.names = names if names is not None else KbitNames()
+        self.characters = characters if characters is not None else {}
+        self.named_glyphs = named_glyphs if named_glyphs is not None else {}
+        self.kern_pairs = kern_pairs if kern_pairs is not None else {}
 
     def __copy__(self) -> KbitFont:
         return self.copy()
