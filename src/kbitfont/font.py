@@ -186,6 +186,12 @@ class KbitFont:
         self.named_glyphs = {} if named_glyphs is None else named_glyphs
         self.kern_pairs = {} if kern_pairs is None else kern_pairs
 
+    def __copy__(self) -> KbitFont:
+        return self.copy()
+
+    def __deepcopy__(self, memo: dict[int, Any]) -> KbitFont:
+        return self.deepcopy()
+
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitFont):
             return NotImplemented
@@ -340,3 +346,21 @@ class KbitFont:
     def save_kbitx(self, file_path: str | PathLike[str]):
         with open(file_path, 'wb') as file:
             self.dump_kbitx(file)
+
+    def copy(self) -> KbitFont:
+        return KbitFont(
+            self.props,
+            self.names,
+            self.characters,
+            self.named_glyphs,
+            self.kern_pairs,
+        )
+
+    def deepcopy(self) -> KbitFont:
+        return KbitFont(
+            self.props.deepcopy(),
+            self.names.deepcopy(),
+            {code_point: glyph.deepcopy() for code_point, glyph in self.characters.items()},
+            {glyph_name: glyph.deepcopy() for glyph_name, glyph in self.named_glyphs.items()},
+            self.kern_pairs.copy(),
+        )

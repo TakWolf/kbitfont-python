@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from collections import UserDict
 from typing import Any
 
@@ -28,6 +30,12 @@ _NAME_ID_WWS_STYLE = 22
 class KbitNames(UserDict[int, str]):
     def __init__(self, names: dict[int, str] | None = None):
         super().__init__(names)
+
+    def __copy__(self) -> KbitNames:
+        return self.copy()
+
+    def __deepcopy__(self, memo: dict[int, Any]) -> KbitNames:
+        return self.deepcopy()
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitNames):
@@ -209,3 +217,9 @@ class KbitNames(UserDict[int, str]):
     @wws_style.setter
     def wws_style(self, value: str | None):
         self[_NAME_ID_WWS_STYLE] = value
+
+    def copy(self) -> KbitNames:
+        return KbitNames(self.data)
+
+    def deepcopy(self) -> KbitNames:
+        return self.copy()

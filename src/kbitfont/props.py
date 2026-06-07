@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Any
 
 
@@ -28,6 +30,12 @@ class KbitProps:
         self.x_height = x_height
         self.cap_height = cap_height
 
+    def __copy__(self) -> KbitProps:
+        return self.copy()
+
+    def __deepcopy__(self, memo: dict[int, Any]) -> KbitProps:
+        return self.deepcopy()
+
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, KbitProps):
             return NotImplemented
@@ -46,3 +54,17 @@ class KbitProps:
     @property
     def line_height(self) -> int:
         return self.line_ascent + self.line_descent
+
+    def copy(self) -> KbitProps:
+        return KbitProps(
+            self.em_ascent,
+            self.em_descent,
+            self.line_ascent,
+            self.line_descent,
+            self.line_gap,
+            self.x_height,
+            self.cap_height,
+        )
+
+    def deepcopy(self) -> KbitProps:
+        return self.copy()
