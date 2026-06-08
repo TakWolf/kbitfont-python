@@ -1,15 +1,33 @@
 from pathlib import Path
 
+import pytest
+
 from kbitfont import KbitFont
 
 
-def test_demo_kbits(assets_dir: Path):
-    data = assets_dir.joinpath('demo', 'demo.kbits').read_bytes()
+@pytest.mark.parametrize(
+    'font_dir, font_file_name', [
+        ('demo', 'demo.kbits'),
+        ('macintosh', 'Athens.kbits'),
+        ('macintosh', 'Geneva-12.kbits'),
+        ('macintosh', 'New-York-14.kbits'),
+    ],
+)
+def test_parse_dump_kbits(assets_dir: Path, font_dir: str, font_file_name: str):
+    data = assets_dir.joinpath(font_dir, font_file_name).read_bytes()
     font = KbitFont.parse_kbits(data)
     assert font.dump_kbits_to_bytes() == data
 
 
-def test_demo_kbitx(assets_dir: Path):
-    data = assets_dir.joinpath('demo', 'demo.kbitx').read_bytes()
+@pytest.mark.parametrize(
+    'font_dir, font_file_name', [
+        ('demo', 'demo.kbitx'),
+        ('macintosh', 'Athens.kbitx'),
+        ('macintosh', 'Geneva-12.kbitx'),
+        ('macintosh', 'New-York-14.kbitx'),
+    ],
+)
+def test_parse_dump_kbitx(assets_dir: Path, font_dir: str, font_file_name: str):
+    data = assets_dir.joinpath(font_dir, font_file_name).read_bytes()
     font = KbitFont.parse_kbitx(data)
     assert font.dump_kbitx_to_bytes() == data.replace(b'\r\n', b'\n')
