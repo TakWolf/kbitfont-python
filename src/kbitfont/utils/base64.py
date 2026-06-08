@@ -6,4 +6,4 @@ def encode_no_padding(data: bytes) -> bytes:
 
 
 def decode_no_padding(data: bytes) -> bytes:
-    return base64.b64decode(data + b'=' * (4 - len(data) % 4))
+    return base64.b64decode(data + b'=' * (-len(data) % 4))
