@@ -173,7 +173,7 @@ class Stream:
     def write_bitmap(self, bitmap: list[list[int]]) -> int:
         size = 0
         height = len(bitmap)
-        width = max(len(bitmap_row) for bitmap_row in bitmap) if height > 0 else 0
+        width = max((len(bitmap_row) for bitmap_row in bitmap), default=0)
         size += self.write_uleb128(height)
         size += self.write_uleb128(width)
         no_repeat_colors = bytearray()
