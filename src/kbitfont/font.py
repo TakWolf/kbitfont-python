@@ -52,6 +52,8 @@ class KbitFont:
         font.props.line_descent = stream.read_int32()
         font.props.line_gap = stream.read_int32()
         font.props.x_height = stream.read_int32()
+        font.props.cap_height = font.props.x_height
+        font.props.new_glyph_width = font.props.em_ascent + font.props.em_descent
 
         while True:
             block_type = stream.read(4)
@@ -118,6 +120,8 @@ class KbitFont:
                     font.props.x_height = value
                 elif name == kbitx.PROP_CAP_HEIGHT:
                     font.props.cap_height = value
+                elif name == kbitx.PROP_NEW_GLYPH_WIDTH:
+                    font.props.new_glyph_width = value
             elif node.tag == kbitx.TAG_NAME:
                 name_id = kbitx.get_attr_int(node, kbitx.ATTR_ID)
                 value = kbitx.get_attr_str(node, kbitx.ATTR_VALUE)
@@ -276,6 +280,10 @@ class KbitFont:
         kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
             (kbitx.ATTR_ID, kbitx.PROP_CAP_HEIGHT),
             (kbitx.ATTR_VALUE, self.props.cap_height),
+        ])
+        kbitx.write_xml_tag_line(stream, kbitx.TAG_PROP, [
+            (kbitx.ATTR_ID, kbitx.PROP_NEW_GLYPH_WIDTH),
+            (kbitx.ATTR_VALUE, self.props.new_glyph_width),
         ])
 
         for name_id, value in sorted(self.names.items()):

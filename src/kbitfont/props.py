@@ -11,6 +11,7 @@ class KbitProps:
     line_gap: int
     x_height: int
     cap_height: int
+    new_glyph_width: int
 
     def __init__(
             self,
@@ -21,6 +22,7 @@ class KbitProps:
             line_gap: int = 0,
             x_height: int = 0,
             cap_height: int = 0,
+            new_glyph_width: int = 0,
     ):
         self.em_ascent = em_ascent
         self.em_descent = em_descent
@@ -29,6 +31,7 @@ class KbitProps:
         self.line_gap = line_gap
         self.x_height = x_height
         self.cap_height = cap_height
+        self.new_glyph_width = new_glyph_width
 
     def __copy__(self) -> KbitProps:
         return self.copy()
@@ -45,7 +48,8 @@ class KbitProps:
                 self.line_descent == other.line_descent and
                 self.line_gap == other.line_gap and
                 self.x_height == other.x_height and
-                self.cap_height == other.cap_height)
+                self.cap_height == other.cap_height and
+                self.new_glyph_width == other.new_glyph_width)
 
     @property
     def em_height(self) -> int:
@@ -64,6 +68,7 @@ class KbitProps:
             self.line_gap,
             self.x_height,
             self.cap_height,
+            self.new_glyph_width,
         )
 
     def deepcopy(self) -> KbitProps:

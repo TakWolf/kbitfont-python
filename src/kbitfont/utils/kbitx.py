@@ -29,6 +29,7 @@ PROP_LINE_DESCENT: Final = 'lineDescent'
 PROP_LINE_GAP: Final = 'lineGap'
 PROP_X_HEIGHT: Final = 'xHeight'
 PROP_CAP_HEIGHT: Final = 'capHeight'
+PROP_NEW_GLYPH_WIDTH: Final = 'newGlyphWidth'
 
 XML_HEADER: Final = b'<?xml version="1.0" encoding="UTF-8"?>\n'
 XML_DOCTYPE: Final = f'<!DOCTYPE {TAG_ROOT} PUBLIC "-//Kreative//DTD BitsNPicasBitmap 1.0//EN" "http://www.kreativekorp.com/dtd/kbitx.dtd">\n'.encode()

@@ -23,6 +23,7 @@ def test_copy():
         line_gap=5,
         x_height=6,
         cap_height=7,
+        new_glyph_width=8,
     )
     props_2 = copy(props_1)
     props_3 = deepcopy(props_1)
@@ -42,6 +43,7 @@ def test_eq():
         line_gap=5,
         x_height=6,
         cap_height=7,
+        new_glyph_width=8,
     )
     props_2 = KbitProps(
         em_ascent=1,
@@ -51,5 +53,6 @@ def test_eq():
         line_gap=5,
         x_height=6,
         cap_height=7,
+        new_glyph_width=8,
     )
     assert props_1 == props_2
