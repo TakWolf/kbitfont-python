@@ -8,6 +8,7 @@
 <prop id="lineGap" value="1"/>
 <prop id="xHeight" value="5"/>
 <prop id="capHeight" value="7"/>
+<prop id="newGlyphWidth" value="6"/>
 <name id="0" value="Copyright (c) TakWolf"/>
 <name id="1" value="Demo"/>
 <name id="2" value="Regular"/>

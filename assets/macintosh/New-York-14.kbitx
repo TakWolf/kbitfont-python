@@ -8,6 +8,7 @@
 <prop id="lineGap" value="2"/>
 <prop id="xHeight" value="14"/>
 <prop id="capHeight" value="11"/>
+<prop id="newGlyphWidth" value="14"/>
 <name id="1" value="New York"/>
 <name id="2" value="Normal"/>
 <g u="32" x="0" y="0" w="4" d="AAA"/>

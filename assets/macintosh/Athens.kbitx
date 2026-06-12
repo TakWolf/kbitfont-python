@@ -8,6 +8,7 @@
 <prop id="lineGap" value="1"/>
 <prop id="xHeight" value="18"/>
 <prop id="capHeight" value="14"/>
+<prop id="newGlyphWidth" value="18"/>
 <name id="1" value="Athens"/>
 <name id="2" value="Normal"/>
 <g u="32" x="0" y="0" w="5" d="AAA"/>
