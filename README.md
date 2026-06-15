@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/python-3.10-brightgreen?style=flat-square)](https://www.python.org)
 [![PyPI](https://img.shields.io/pypi/v/kbitfont?style=flat-square)](https://pypi.org/project/kbitfont/)
 
-KbitFont is a library for parsing [Bits'N'Picas](https://github.com/kreativekorp/bitsnpicas) native save format files (`.kbits` and `.kbitx`).
+A library for handling [Bits'N'Picas](https://github.com/kreativekorp/bitsnpicas) native save format files (`.kbits` and `.kbitx`).
 
 ## Installation
 
