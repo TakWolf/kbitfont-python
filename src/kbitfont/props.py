@@ -39,7 +39,7 @@ class KbitProps:
     def __deepcopy__(self, memo: dict[int, Any]) -> KbitProps:
         return self.deepcopy()
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, KbitProps):
             return NotImplemented
         return (self.em_ascent == other.em_ascent and

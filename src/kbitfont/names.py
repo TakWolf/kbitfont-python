@@ -37,7 +37,7 @@ class KbitNames(UserDict[int, str]):
     def __deepcopy__(self, memo: dict[int, Any]) -> KbitNames:
         return self.deepcopy()
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, KbitNames):
             return NotImplemented
         return super().__eq__(other)

@@ -196,7 +196,7 @@ class KbitFont:
     def __deepcopy__(self, memo: dict[int, Any]) -> KbitFont:
         return self.deepcopy()
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, KbitFont):
             return NotImplemented
         return (self.props == other.props and

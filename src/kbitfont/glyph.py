@@ -27,7 +27,7 @@ class KbitGlyph:
     def __deepcopy__(self, memo: dict[int, Any]) -> KbitGlyph:
         return self.deepcopy()
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, KbitGlyph):
             return NotImplemented
         return (self.x == other.x and
