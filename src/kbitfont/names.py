@@ -31,6 +31,19 @@ class KbitNames(UserDict[int, str]):
     def __init__(self, names: dict[int, str] | None = None):
         super().__init__(names)
 
+    def __setitem__(self, key: Any, value: Any):
+        if value is None:
+            self.pop(key, None)
+            return
+
+        if not isinstance(key, int):
+            raise KeyError("key must be 'int'")
+
+        if not isinstance(value, str):
+            raise ValueError("value must be 'str'")
+
+        super().__setitem__(key, value)
+
     def __copy__(self) -> KbitNames:
         return self.copy()
 
