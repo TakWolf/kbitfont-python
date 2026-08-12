@@ -6,7 +6,8 @@ from kbitfont import KbitFont
 
 
 @pytest.mark.parametrize(
-    'font_dir, font_file_name', [
+    'font_dir, font_file_name',
+    [
         ('demo', 'demo.kbits'),
         ('macintosh', 'Athens.kbits'),
         ('macintosh', 'Geneva-12.kbits'),
@@ -22,7 +23,8 @@ def test_load_save_kbits(assets_dir: Path, tmp_path: Path, font_dir: str, font_f
 
 
 @pytest.mark.parametrize(
-    'font_dir, font_file_name', [
+    'font_dir, font_file_name',
+    [
         ('demo', 'demo.kbitx'),
         ('macintosh', 'Athens.kbitx'),
         ('macintosh', 'Geneva-12.kbitx'),
