@@ -72,7 +72,7 @@ def main() -> None:
         ],
     )
 
-    font.characters[65] = KbitGlyph(
+    font.characters[0x0041] = KbitGlyph(
         x=0,
         y=14,
         advance=8,
