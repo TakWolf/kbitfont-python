@@ -1,16 +1,16 @@
 import shutil
 
-from examples import assets_dir, build_dir
+from examples import ASSETS_DIR, BUILD_DIR
 from kbitfont import KbitFont
 
 
 def main():
-    outputs_dir = build_dir.joinpath('load_kbitx')
+    outputs_dir = BUILD_DIR.joinpath('load_kbitx')
     if outputs_dir.exists():
         shutil.rmtree(outputs_dir)
     outputs_dir.mkdir(parents=True)
 
-    font = KbitFont.load_kbitx(assets_dir.joinpath('macintosh', 'Athens.kbitx'))
+    font = KbitFont.load_kbitx(ASSETS_DIR.joinpath('macintosh', 'Athens.kbitx'))
     print(f'name: {font.names.family}')
     print(f'size: {font.props.em_height}')
     print(f'ascent: {font.props.line_ascent}')
