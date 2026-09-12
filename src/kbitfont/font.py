@@ -183,7 +183,7 @@ class KbitFont:
             characters: dict[int, KbitGlyph] | None = None,
             named_glyphs: dict[str, KbitGlyph] | None = None,
             kern_pairs: dict[tuple[int | str, int | str], int] | None = None,
-    ):
+    ) -> None:
         self.props = props if props is not None else KbitProps()
         self.names = names if names is not None else KbitNames()
         self.characters = characters if characters is not None else {}
@@ -205,7 +205,7 @@ class KbitFont:
                 self.named_glyphs == other.named_glyphs and
                 self.kern_pairs == other.kern_pairs)
 
-    def dump_kbits(self, stream: BinaryIO):
+    def dump_kbits(self, stream: BinaryIO) -> None:
         stream = Stream(stream)
 
         stream.write(kbits.MAGIC_NUMBER)
@@ -244,11 +244,11 @@ class KbitFont:
         self.dump_kbits(stream)
         return stream.getvalue()
 
-    def save_kbits(self, file_path: str | PathLike[str]):
+    def save_kbits(self, file_path: str | PathLike[str]) -> None:
         with open(file_path, 'wb') as file:
             self.dump_kbits(file)
 
-    def dump_kbitx(self, stream: BinaryIO):
+    def dump_kbitx(self, stream: BinaryIO) -> None:
         stream.write(kbitx.XML_HEADER)
         stream.write(kbitx.XML_DOCTYPE)
         stream.write(kbitx.XML_ROOT_START)
@@ -351,7 +351,7 @@ class KbitFont:
         self.dump_kbitx(stream)
         return stream.getvalue()
 
-    def save_kbitx(self, file_path: str | PathLike[str]):
+    def save_kbitx(self, file_path: str | PathLike[str]) -> None:
         with open(file_path, 'wb') as file:
             self.dump_kbitx(file)
 

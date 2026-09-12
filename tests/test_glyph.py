@@ -3,7 +3,7 @@ from copy import copy, deepcopy
 from kbitfont import KbitGlyph
 
 
-def test_glyph():
+def test_glyph() -> None:
     glyph = KbitGlyph(
         x=1,
         y=2,
@@ -15,7 +15,7 @@ def test_glyph():
     assert glyph.dimensions == (4, 1)
 
 
-def test_copy():
+def test_copy() -> None:
     glyph_1 = KbitGlyph(
         x=1,
         y=2,
@@ -29,7 +29,7 @@ def test_copy():
     assert glyph_1.bitmap is glyph_2.bitmap
 
 
-def test_deepcopy():
+def test_deepcopy() -> None:
     glyph_1 = KbitGlyph(
         x=1,
         y=2,
@@ -46,7 +46,7 @@ def test_deepcopy():
         assert bitmap_row_1 is not bitmap_row_2
 
 
-def test_eq():
+def test_eq() -> None:
     glyph_1 = KbitGlyph(
         x=1,
         y=2,

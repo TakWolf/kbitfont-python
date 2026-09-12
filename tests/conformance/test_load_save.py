@@ -14,7 +14,7 @@ from kbitfont import KbitFont
         ('macintosh', 'New-York-14.kbits'),
     ],
 )
-def test_load_save_kbits(assets_dir: Path, tmp_path: Path, font_dir: str, font_file_name: str):
+def test_load_save_kbits(assets_dir: Path, tmp_path: Path, font_dir: str, font_file_name: str) -> None:
     load_path = assets_dir.joinpath(font_dir, font_file_name)
     save_path = tmp_path.joinpath(font_file_name)
     font = KbitFont.load_kbits(load_path)
@@ -31,7 +31,7 @@ def test_load_save_kbits(assets_dir: Path, tmp_path: Path, font_dir: str, font_f
         ('macintosh', 'New-York-14.kbitx'),
     ],
 )
-def test_load_save_kbitx(assets_dir: Path, tmp_path: Path, font_dir: str, font_file_name: str):
+def test_load_save_kbitx(assets_dir: Path, tmp_path: Path, font_dir: str, font_file_name: str) -> None:
     load_path = assets_dir.joinpath(font_dir, font_file_name)
     save_path = tmp_path.joinpath(font_file_name)
     font = KbitFont.load_kbitx(load_path)

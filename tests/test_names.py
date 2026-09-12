@@ -3,7 +3,7 @@ from copy import copy, deepcopy
 from kbitfont import KbitNames
 
 
-def test_names():
+def test_names() -> None:
     names = KbitNames()
 
     names.copyright = 'ID: 0'
@@ -95,7 +95,7 @@ def test_names():
     assert names[22] == 'ID: 22'
 
 
-def test_copy():
+def test_copy() -> None:
     names_1 = KbitNames()
     names_1.copyright = 'ID: 0'
     names_1.family = 'ID: 1'
@@ -108,7 +108,7 @@ def test_copy():
     assert names_1 is not names_3
 
 
-def test_eq():
+def test_eq() -> None:
     names_1 = KbitNames()
     names_1.copyright = 'ID: 0'
     names_1.family = 'ID: 1'

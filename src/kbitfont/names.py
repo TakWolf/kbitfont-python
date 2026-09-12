@@ -28,10 +28,10 @@ _NAME_ID_WWS_STYLE = 22
 
 
 class KbitNames(UserDict[int, str]):
-    def __init__(self, names: dict[int, str] | None = None):
+    def __init__(self, names: dict[int, str] | None = None) -> None:
         super().__init__(names)
 
-    def __setitem__(self, key: Any, value: Any):
+    def __setitem__(self, key: Any, value: Any) -> None:
         if value is None:
             self.pop(key, None)
             return
@@ -60,7 +60,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_COPYRIGHT, None)
 
     @copyright.setter
-    def copyright(self, value: str | None):
+    def copyright(self, value: str | None) -> None:
         self[_NAME_ID_COPYRIGHT] = value
 
     @property
@@ -68,7 +68,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_FAMILY, None)
 
     @family.setter
-    def family(self, value: str | None):
+    def family(self, value: str | None) -> None:
         self[_NAME_ID_FAMILY] = value
 
     @property
@@ -76,7 +76,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_STYLE, None)
 
     @style.setter
-    def style(self, value: str | None):
+    def style(self, value: str | None) -> None:
         self[_NAME_ID_STYLE] = value
 
     @property
@@ -84,7 +84,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_UNIQUE_ID, None)
 
     @unique_id.setter
-    def unique_id(self, value: str | None):
+    def unique_id(self, value: str | None) -> None:
         self[_NAME_ID_UNIQUE_ID] = value
 
     @property
@@ -92,7 +92,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_FAMILY_AND_STYLE, None)
 
     @family_and_style.setter
-    def family_and_style(self, value: str | None):
+    def family_and_style(self, value: str | None) -> None:
         self[_NAME_ID_FAMILY_AND_STYLE] = value
 
     @property
@@ -100,7 +100,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_VERSION, None)
 
     @version.setter
-    def version(self, value: str | None):
+    def version(self, value: str | None) -> None:
         self[_NAME_ID_VERSION] = value
 
     @property
@@ -108,7 +108,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_POSTSCRIPT, None)
 
     @postscript.setter
-    def postscript(self, value: str | None):
+    def postscript(self, value: str | None) -> None:
         self[_NAME_ID_POSTSCRIPT] = value
 
     @property
@@ -116,7 +116,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_TRADEMARK, None)
 
     @trademark.setter
-    def trademark(self, value: str | None):
+    def trademark(self, value: str | None) -> None:
         self[_NAME_ID_TRADEMARK] = value
 
     @property
@@ -124,7 +124,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_MANUFACTURER, None)
 
     @manufacturer.setter
-    def manufacturer(self, value: str | None):
+    def manufacturer(self, value: str | None) -> None:
         self[_NAME_ID_MANUFACTURER] = value
 
     @property
@@ -132,7 +132,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_DESIGNER, None)
 
     @designer.setter
-    def designer(self, value: str | None):
+    def designer(self, value: str | None) -> None:
         self[_NAME_ID_DESIGNER] = value
 
     @property
@@ -140,7 +140,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_DESCRIPTION, None)
 
     @description.setter
-    def description(self, value: str | None):
+    def description(self, value: str | None) -> None:
         self[_NAME_ID_DESCRIPTION] = value
 
     @property
@@ -148,7 +148,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_VENDOR_URL, None)
 
     @vendor_url.setter
-    def vendor_url(self, value: str | None):
+    def vendor_url(self, value: str | None) -> None:
         self[_NAME_ID_VENDOR_URL] = value
 
     @property
@@ -156,7 +156,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_DESIGNER_URL, None)
 
     @designer_url.setter
-    def designer_url(self, value: str | None):
+    def designer_url(self, value: str | None) -> None:
         self[_NAME_ID_DESIGNER_URL] = value
 
     @property
@@ -164,7 +164,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_LICENSE_DESCRIPTION, None)
 
     @license_description.setter
-    def license_description(self, value: str | None):
+    def license_description(self, value: str | None) -> None:
         self[_NAME_ID_LICENSE_DESCRIPTION] = value
 
     @property
@@ -172,7 +172,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_LICENSE_URL, None)
 
     @license_url.setter
-    def license_url(self, value: str | None):
+    def license_url(self, value: str | None) -> None:
         self[_NAME_ID_LICENSE_URL] = value
 
     @property
@@ -180,7 +180,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_WINDOWS_FAMILY, None)
 
     @windows_family.setter
-    def windows_family(self, value: str | None):
+    def windows_family(self, value: str | None) -> None:
         self[_NAME_ID_WINDOWS_FAMILY] = value
 
     @property
@@ -188,7 +188,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_WINDOWS_STYLE, None)
 
     @windows_style.setter
-    def windows_style(self, value: str | None):
+    def windows_style(self, value: str | None) -> None:
         self[_NAME_ID_WINDOWS_STYLE] = value
 
     @property
@@ -196,7 +196,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_MACOS_FAMILY_AND_STYLE, None)
 
     @macos_family_and_style.setter
-    def macos_family_and_style(self, value: str | None):
+    def macos_family_and_style(self, value: str | None) -> None:
         self[_NAME_ID_MACOS_FAMILY_AND_STYLE] = value
 
     @property
@@ -204,7 +204,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_SAMPLE_TEXT, None)
 
     @sample_text.setter
-    def sample_text(self, value: str | None):
+    def sample_text(self, value: str | None) -> None:
         self[_NAME_ID_SAMPLE_TEXT] = value
 
     @property
@@ -212,7 +212,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_POSTSCRIPT_CID, None)
 
     @postscript_cid.setter
-    def postscript_cid(self, value: str | None):
+    def postscript_cid(self, value: str | None) -> None:
         self[_NAME_ID_POSTSCRIPT_CID] = value
 
     @property
@@ -220,7 +220,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_WWS_FAMILY, None)
 
     @wws_family.setter
-    def wws_family(self, value: str | None):
+    def wws_family(self, value: str | None) -> None:
         self[_NAME_ID_WWS_FAMILY] = value
 
     @property
@@ -228,7 +228,7 @@ class KbitNames(UserDict[int, str]):
         return self.get(_NAME_ID_WWS_STYLE, None)
 
     @wws_style.setter
-    def wws_style(self, value: str | None):
+    def wws_style(self, value: str | None) -> None:
         self[_NAME_ID_WWS_STYLE] = value
 
     def copy(self) -> KbitNames:

@@ -4,7 +4,7 @@ from examples import BUILD_DIR
 from kbitfont import KbitFont, KbitGlyph
 
 
-def main():
+def main() -> None:
     outputs_dir = BUILD_DIR.joinpath('create')
     if outputs_dir.exists():
         shutil.rmtree(outputs_dir)

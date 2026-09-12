@@ -3,7 +3,7 @@ from copy import copy, deepcopy
 from kbitfont import KbitProps
 
 
-def test_props():
+def test_props() -> None:
     props = KbitProps(
         em_ascent=10,
         em_descent=2,
@@ -14,7 +14,7 @@ def test_props():
     assert props.line_height == 16
 
 
-def test_copy():
+def test_copy() -> None:
     props_1 = KbitProps(
         em_ascent=1,
         em_descent=2,
@@ -34,7 +34,7 @@ def test_copy():
     assert props_1 is not props_3
 
 
-def test_eq():
+def test_eq() -> None:
     props_1 = KbitProps(
         em_ascent=1,
         em_descent=2,

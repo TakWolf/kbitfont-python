@@ -4,7 +4,7 @@ from pathlib import Path
 from kbitfont import KbitFont
 
 
-def test_copy(assets_dir: Path):
+def test_copy(assets_dir: Path) -> None:
     font_1 = KbitFont.load_kbitx(assets_dir.joinpath('demo', 'demo.kbitx'))
     font_2 = copy(font_1)
 
@@ -17,7 +17,7 @@ def test_copy(assets_dir: Path):
     assert font_1.kern_pairs is font_2.kern_pairs
 
 
-def test_deepcopy(assets_dir: Path):
+def test_deepcopy(assets_dir: Path) -> None:
     font_1 = KbitFont.load_kbitx(assets_dir.joinpath('demo', 'demo.kbitx'))
     font_2 = deepcopy(font_1)
 
@@ -38,7 +38,7 @@ def test_deepcopy(assets_dir: Path):
         assert glyph_1 is not glyph_2
 
 
-def test_eq(assets_dir: Path):
+def test_eq(assets_dir: Path) -> None:
     file_path = assets_dir.joinpath('demo', 'demo.kbitx')
     font_1 = KbitFont.load_kbitx(file_path)
     font_2 = KbitFont.load_kbitx(file_path)

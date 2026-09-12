@@ -1,7 +1,7 @@
 from kbitfont.utils import base64
 
 
-def test_base64():
+def test_base64() -> None:
     plain = b'Hello World'
     encoded = b'SGVsbG8gV29ybGQ'
     assert base64.encode_no_padding(plain) == encoded

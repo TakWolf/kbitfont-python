@@ -22,7 +22,7 @@ from examples import BUILD_DIR
 from kbitfont import KbitFont, KbitGlyph
 
 
-def main():
+def main() -> None:
     outputs_dir = BUILD_DIR.joinpath('create')
     if outputs_dir.exists():
         shutil.rmtree(outputs_dir)
@@ -113,7 +113,7 @@ from examples import ASSETS_DIR, BUILD_DIR
 from kbitfont import KbitFont
 
 
-def main():
+def main() -> None:
     outputs_dir = BUILD_DIR.joinpath('load_kbits')
     if outputs_dir.exists():
         shutil.rmtree(outputs_dir)
@@ -150,7 +150,7 @@ from examples import ASSETS_DIR, BUILD_DIR
 from kbitfont import KbitFont
 
 
-def main():
+def main() -> None:
     outputs_dir = BUILD_DIR.joinpath('load_kbitx')
     if outputs_dir.exists():
         shutil.rmtree(outputs_dir)

@@ -15,7 +15,7 @@ class KbitGlyph:
             y: int = 0,
             advance: int = 0,
             bitmap: list[list[int]] | None = None,
-    ):
+    ) -> None:
         self.x = x
         self.y = y
         self.advance = advance

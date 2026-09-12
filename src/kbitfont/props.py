@@ -23,7 +23,7 @@ class KbitProps:
             x_height: int = 0,
             cap_height: int = 0,
             new_glyph_width: int = 0,
-    ):
+    ) -> None:
         self.em_ascent = em_ascent
         self.em_descent = em_descent
         self.line_ascent = line_ascent

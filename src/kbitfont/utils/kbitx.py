@@ -53,7 +53,7 @@ def get_attr_int(node: Element, key: str, default: int = None) -> int | None:
     return default
 
 
-def write_xml_tag_line(stream: BinaryIO, tag: str, attrs: list[tuple[str, int | str]]):
+def write_xml_tag_line(stream: BinaryIO, tag: str, attrs: list[tuple[str, int | str]]) -> None:
     stream.write(b'<')
     stream.write(tag.encode())
     for key, value in attrs:

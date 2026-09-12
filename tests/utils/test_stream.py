@@ -3,7 +3,7 @@ import pytest
 from kbitfont.utils.stream import Stream
 
 
-def test_bytes():
+def test_bytes() -> None:
     stream = Stream()
     assert stream.write(b'Hello World') == 11
     assert stream.tell() == 11
@@ -12,7 +12,7 @@ def test_bytes():
     assert stream.tell() == 11
 
 
-def test_eof():
+def test_eof() -> None:
     stream = Stream()
     stream.write(b'ABC')
     with pytest.raises(EOFError):
@@ -21,7 +21,7 @@ def test_eof():
     assert stream.read(4, ignore_eof=True) == b'ABC'
 
 
-def test_uint8():
+def test_uint8() -> None:
     stream = Stream()
     assert stream.write_uint8(0x00) == 1
     assert stream.write_uint8(0xFF) == 1
@@ -32,7 +32,7 @@ def test_uint8():
     assert stream.tell() == 2
 
 
-def test_int8():
+def test_int8() -> None:
     stream = Stream()
     assert stream.write_int8(-0x80) == 1
     assert stream.write_int8(0x7F) == 1
@@ -43,7 +43,7 @@ def test_int8():
     assert stream.tell() == 2
 
 
-def test_uint16():
+def test_uint16() -> None:
     stream = Stream()
     assert stream.write_uint16(0x0000) == 2
     assert stream.write_uint16(0xFFFF) == 2
@@ -54,7 +54,7 @@ def test_uint16():
     assert stream.tell() == 4
 
 
-def test_int16():
+def test_int16() -> None:
     stream = Stream()
     assert stream.write_int16(-0x8000) == 2
     assert stream.write_int16(0x7FFF) == 2
@@ -65,7 +65,7 @@ def test_int16():
     assert stream.tell() == 4
 
 
-def test_uint32():
+def test_uint32() -> None:
     stream = Stream()
     assert stream.write_uint32(0x00000000) == 4
     assert stream.write_uint32(0xFFFFFFFF) == 4
@@ -76,7 +76,7 @@ def test_uint32():
     assert stream.tell() == 8
 
 
-def test_int32():
+def test_int32() -> None:
     stream = Stream()
     assert stream.write_int32(-0x80000000) == 4
     assert stream.write_int32(0x7FFFFFFF) == 4
@@ -87,7 +87,7 @@ def test_int32():
     assert stream.tell() == 8
 
 
-def test_utf():
+def test_utf() -> None:
     stream = Stream()
     assert stream.write_utf('ABC') == 5
     assert stream.write_utf('12345') == 7
@@ -98,7 +98,7 @@ def test_utf():
     assert stream.tell() == 12
 
 
-def test_uleb128():
+def test_uleb128() -> None:
     stream = Stream()
     assert stream.write_uleb128(65535) == 3
     assert stream.write_uleb128(624485) == 3
@@ -113,7 +113,7 @@ def test_uleb128():
     assert stream.tell() == 12
 
 
-def test_bitmap_1():
+def test_bitmap_1() -> None:
     bitmap = [
         [0x00, 0x00, 0xFF, 0xFF, 0x80],
         [0x00, 0x00, 0xFF, 0xFF, 0x80],
@@ -128,7 +128,7 @@ def test_bitmap_1():
     assert stream.tell() == size
 
 
-def test_bitmap_2():
+def test_bitmap_2() -> None:
     bitmap = [[i % 0xFF for i in range(1050)]]
 
     stream = Stream()
@@ -139,7 +139,7 @@ def test_bitmap_2():
     assert stream.tell() == size
 
 
-def test_bitmap_3():
+def test_bitmap_3() -> None:
     bitmap = [[0x00 for _ in range(1050)]]
 
     stream = Stream()
@@ -150,7 +150,7 @@ def test_bitmap_3():
     assert stream.tell() == size
 
 
-def test_bitmap_4():
+def test_bitmap_4() -> None:
     bitmap = [[0x80 for _ in range(1050)]]
 
     stream = Stream()
@@ -161,7 +161,7 @@ def test_bitmap_4():
     assert stream.tell() == size
 
 
-def test_bitmap_5():
+def test_bitmap_5() -> None:
     bitmap = [[0xFF for _ in range(1050)]]
 
     stream = Stream()

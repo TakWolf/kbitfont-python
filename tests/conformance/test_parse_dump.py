@@ -14,7 +14,7 @@ from kbitfont import KbitFont
         ('macintosh', 'New-York-14.kbits'),
     ],
 )
-def test_parse_dump_kbits(assets_dir: Path, font_dir: str, font_file_name: str):
+def test_parse_dump_kbits(assets_dir: Path, font_dir: str, font_file_name: str) -> None:
     data = assets_dir.joinpath(font_dir, font_file_name).read_bytes()
     font = KbitFont.parse_kbits(data)
     assert font.dump_kbits_to_bytes() == data
@@ -29,7 +29,7 @@ def test_parse_dump_kbits(assets_dir: Path, font_dir: str, font_file_name: str):
         ('macintosh', 'New-York-14.kbitx'),
     ],
 )
-def test_parse_dump_kbitx(assets_dir: Path, font_dir: str, font_file_name: str):
+def test_parse_dump_kbitx(assets_dir: Path, font_dir: str, font_file_name: str) -> None:
     data = assets_dir.joinpath(font_dir, font_file_name).read_bytes()
     font = KbitFont.parse_kbitx(data)
     assert font.dump_kbitx_to_bytes() == data.replace(b'\r\n', b'\n')
