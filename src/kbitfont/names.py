@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections import UserDict
+from collections.abc import Mapping
 from typing import Any
 
 _NAME_ID_COPYRIGHT = 0
@@ -28,7 +29,7 @@ _NAME_ID_WWS_STYLE = 22
 
 
 class KbitNames(UserDict[int, str]):
-    def __init__(self, names: dict[int, str] | None = None) -> None:
+    def __init__(self, names: Mapping[int, str] | None = None) -> None:
         super().__init__(names)
 
     def __setitem__(self, key: Any, value: Any) -> None:
