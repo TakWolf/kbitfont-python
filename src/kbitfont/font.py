@@ -14,7 +14,7 @@ from kbitfont.utils import kbits, kbitx, base64
 from kbitfont.utils.stream import Stream
 
 
-def _kern_pairs_key_comparator(item: tuple[tuple[int | str, int | str], int]) -> tuple[int, int | None, str | None, int, int | None, str | None]:
+def _kern_pair_key_comparator(item: tuple[tuple[int | str, int | str], int]) -> tuple[int, int | None, str | None, int, int | None, str | None]:
     left, right = item[0]
     if isinstance(left, int):
         left_type = 0
@@ -316,7 +316,7 @@ class KbitFont:
                 (kbitx.ATTR_DATA, data),
             ])
 
-        for (left, right), offset in sorted(self.kern_pairs.items(), key=_kern_pairs_key_comparator):
+        for (left, right), offset in sorted(self.kern_pairs.items(), key=_kern_pair_key_comparator):
             if isinstance(left, int):
                 if isinstance(right, int):
                     kbitx.write_xml_tag_line(stream, kbitx.TAG_KERN, [
