@@ -38,10 +38,10 @@ class KbitNames(UserDict[int, str]):
             return
 
         if not isinstance(key, int):
-            raise KeyError("key must be 'int'")
+            raise TypeError("key must be 'int'")
 
         if not isinstance(value, str):
-            raise ValueError("value must be 'str'")
+            raise TypeError("value must be 'str'")
 
         super().__setitem__(key, value)
 
