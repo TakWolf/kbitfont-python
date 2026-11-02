@@ -37,7 +37,7 @@ class KbitGlyph:
 
     @property
     def width(self) -> int:
-        if len(self.bitmap) > 0:
+        if self.bitmap:
             return len(self.bitmap[0])
         else:
             return 0

@@ -117,7 +117,7 @@ class Stream:
     def _write_bitmap_runs(self, no_repeat_colors: bytearray, repeat_count: int, repeat_color: int) -> int:
         size = 0
         no_repeat_colors = memoryview(no_repeat_colors)
-        if len(no_repeat_colors) > 0:
+        if no_repeat_colors:
             n = len(no_repeat_colors)
             offset = 0
             while n >= 992:

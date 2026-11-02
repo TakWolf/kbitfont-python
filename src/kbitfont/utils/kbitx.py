@@ -42,7 +42,7 @@ def get_attr_str(node: Element, key: str, default: str = None) -> str | None:
     value = node.attrib.get(key, None)
     if value is not None:
         value = value.strip()
-        if value != '':
+        if value:
             return value
     return default
 
