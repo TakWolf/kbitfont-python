@@ -39,7 +39,7 @@ def main() -> None:
     font.names.version = '1.0.0'
     font.names.family = 'My Font'
     font.names.style = 'Regular'
-    font.names.manufacturer = 'Pixel Font Studio'
+    font.names.manufacturer = 'TakWolf'
     font.names.designer = 'TakWolf'
     font.names.description = 'A pixel font'
     font.names.copyright = 'Copyright (c) TakWolf'
