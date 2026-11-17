@@ -1,5 +1,4 @@
-import os
-from io import BytesIO
+from io import BytesIO, SEEK_SET
 from typing import BinaryIO
 
 
@@ -231,7 +230,7 @@ class Stream:
         size += self._write_bitmap_runs(no_repeat_colors, repeat_count, repeat_color)
         return size
 
-    def seek(self, offset: int, whence: int = os.SEEK_SET) -> None:
+    def seek(self, offset: int, whence: int = SEEK_SET) -> None:
         self.source.seek(offset, whence)
 
     def tell(self) -> int:
