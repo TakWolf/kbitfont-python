@@ -14,6 +14,8 @@ class Stream:
         self.source = source
 
     def read(self, size: int, ignore_eof: bool = False) -> bytes:
+        if size < 0:
+            raise ValueError(f'size must not be negative, got {size}')
         data = self.source.read(size)
         if len(data) < size and not ignore_eof:
             raise EOFError()
