@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import copy, deepcopy
 from typing import Any
 
 
@@ -34,10 +35,19 @@ class KbitProps:
         self.new_glyph_width = new_glyph_width
 
     def __copy__(self) -> KbitProps:
-        return self.copy()
+        return KbitProps(
+            self.em_ascent,
+            self.em_descent,
+            self.line_ascent,
+            self.line_descent,
+            self.line_gap,
+            self.x_height,
+            self.cap_height,
+            self.new_glyph_width,
+        )
 
     def __deepcopy__(self, memo: dict[int, Any]) -> KbitProps:
-        return self.deepcopy()
+        return copy(self)
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, KbitProps):
@@ -60,16 +70,7 @@ class KbitProps:
         return self.line_ascent + self.line_descent
 
     def copy(self) -> KbitProps:
-        return KbitProps(
-            self.em_ascent,
-            self.em_descent,
-            self.line_ascent,
-            self.line_descent,
-            self.line_gap,
-            self.x_height,
-            self.cap_height,
-            self.new_glyph_width,
-        )
+        return copy(self)
 
     def deepcopy(self) -> KbitProps:
-        return self.copy()
+        return deepcopy(self)

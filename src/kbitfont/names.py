@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import UserDict
 from collections.abc import Mapping
+from copy import copy, deepcopy
 from typing import Any
 
 _NAME_ID_COPYRIGHT = 0
@@ -46,10 +47,10 @@ class KbitNames(UserDict[int, str]):
         super().__setitem__(key, value)
 
     def __copy__(self) -> KbitNames:
-        return self.copy()
+        return KbitNames(self.data)
 
     def __deepcopy__(self, memo: dict[int, Any]) -> KbitNames:
-        return self.deepcopy()
+        return copy(self)
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, KbitNames):
@@ -233,7 +234,7 @@ class KbitNames(UserDict[int, str]):
         self[_NAME_ID_WWS_STYLE] = value
 
     def copy(self) -> KbitNames:
-        return KbitNames(self.data)
+        return copy(self)
 
     def deepcopy(self) -> KbitNames:
-        return self.copy()
+        return deepcopy(self)

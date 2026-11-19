@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import copy, deepcopy
 from typing import Any
 
 
@@ -22,10 +23,20 @@ class KbitGlyph:
         self.bitmap = bitmap if bitmap is not None else []
 
     def __copy__(self) -> KbitGlyph:
-        return self.copy()
+        return KbitGlyph(
+            self.x,
+            self.y,
+            self.advance,
+            self.bitmap,
+        )
 
     def __deepcopy__(self, memo: dict[int, Any]) -> KbitGlyph:
-        return self.deepcopy()
+        return KbitGlyph(
+            self.x,
+            self.y,
+            self.advance,
+            [bitmap_row.copy() for bitmap_row in self.bitmap],
+        )
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, KbitGlyph):
@@ -51,17 +62,7 @@ class KbitGlyph:
         return self.width, self.height
 
     def copy(self) -> KbitGlyph:
-        return KbitGlyph(
-            self.x,
-            self.y,
-            self.advance,
-            self.bitmap,
-        )
+        return copy(self)
 
     def deepcopy(self) -> KbitGlyph:
-        return KbitGlyph(
-            self.x,
-            self.y,
-            self.advance,
-            [bitmap_row.copy() for bitmap_row in self.bitmap],
-        )
+        return deepcopy(self)

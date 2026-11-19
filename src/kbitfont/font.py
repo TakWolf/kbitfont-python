@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import copy, deepcopy
 from io import BytesIO
 from os import PathLike
 from typing import Any, BinaryIO
@@ -191,10 +192,22 @@ class KbitFont:
         self.kern_pairs = kern_pairs if kern_pairs is not None else {}
 
     def __copy__(self) -> KbitFont:
-        return self.copy()
+        return KbitFont(
+            self.props,
+            self.names,
+            self.characters,
+            self.named_glyphs,
+            self.kern_pairs,
+        )
 
     def __deepcopy__(self, memo: dict[int, Any]) -> KbitFont:
-        return self.deepcopy()
+        return KbitFont(
+            self.props.deepcopy(),
+            self.names.deepcopy(),
+            {code_point: glyph.deepcopy() for code_point, glyph in self.characters.items()},
+            {glyph_name: glyph.deepcopy() for glyph_name, glyph in self.named_glyphs.items()},
+            self.kern_pairs.copy(),
+        )
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, KbitFont):
@@ -356,19 +369,7 @@ class KbitFont:
             self.dump_kbitx(file)
 
     def copy(self) -> KbitFont:
-        return KbitFont(
-            self.props,
-            self.names,
-            self.characters,
-            self.named_glyphs,
-            self.kern_pairs,
-        )
+        return copy(self)
 
     def deepcopy(self) -> KbitFont:
-        return KbitFont(
-            self.props.deepcopy(),
-            self.names.deepcopy(),
-            {code_point: glyph.deepcopy() for code_point, glyph in self.characters.items()},
-            {glyph_name: glyph.deepcopy() for glyph_name, glyph in self.named_glyphs.items()},
-            self.kern_pairs.copy(),
-        )
+        return deepcopy(self)
